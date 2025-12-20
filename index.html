@@ -108,7 +108,7 @@
             padding: 2rem 5%;
             background: var(--hero-img);
             background-size: cover;
-            background-attachment: fixed;
+            background-attachment: fixed; /* در کامپیوتر ثابت می‌ماند */
             background-position: center;
             transition: background 0.5s ease-in-out;
         }
@@ -152,20 +152,22 @@
             header { padding: 1rem 3%; }
             .logo-text { font-size: 1.1rem; }
             .logo-img { height: 40px; }
-            .nav-links { display: none; } /* مخفی کردن لینک‌های شلوغ در موبایل */
+            .nav-links { display: none; } 
             .nav-container { gap: 8px; }
             .lang-select { padding: 5px; font-size: 0.8rem; }
             .cta-btn { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
             
-            .hero { background-attachment: scroll; } /* غیرفعال کردن پارالکس در موبایل برای عملکرد بهتر */
-            .hero h1 { line-height: 1.4; }
+            /* راه حل مشکل تصویر پس زمینه در موبایل */
+            .hero { 
+                background-attachment: scroll !important; /* تغییر از Fixed به Scroll برای نمایش در موبایل */
+            } 
             
+            .hero h1 { line-height: 1.4; }
             .showcase { padding: 1.5rem; gap: 1.5rem; flex-direction: column; }
             .showcase-text { min-width: 100%; text-align: center; }
             .showcase-text h3 { font-size: 1.6rem; }
             .showcase-text ul { text-align: right; }
             .showcase-img { min-width: 100%; }
-            
             .contact-btn { width: 100%; justify-content: center; }
             .section { padding: 3rem 5%; }
         }
@@ -336,7 +338,6 @@
                 btn_call: "Call Us",
                 footer: "Designed & Developed by Majd Software Group | 2025"
             }
-            // می‌توانید بخش عربی را نیز به همین ترتیب اصلاح کنید...
         };
 
         function changeLanguage(lang) {
