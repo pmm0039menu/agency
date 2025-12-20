@@ -6,23 +6,22 @@
     <title>گروه نرم‌افزاری مَجد | Majd Software Group</title>
     <style>
         :root {
-            --primary: #d3ad7f; /* رنگ طلایی */
+            --primary: #d3ad7f; /* رنگ طلایی اصلی */
             --bg: #13131a;      /* پس زمینه تیره */
             --card: #1e1e24;    /* کارت‌ها */
             --text: #ffffff;    /* متن */
             --accent: #27ae60;  /* سبز */
             --header-bg: rgba(19, 19, 26, 0.95);
-            /* متغیر عکس پس‌زمینه تیره */
             --hero-img: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop');
         }
 
         /* --- استایل‌های تم روشن --- */
         .light-mode {
+            --primary: #b08d5c; /* طلایی تیره‌تر و غلیظ‌تر برای وضوح بیشتر در تم روشن */
             --bg: #f5f5f7;
             --card: #ffffff;
             --text: #1a1a1a;
             --header-bg: rgba(255, 255, 255, 0.95);
-            /* متغیر عکس پس‌زمینه روشن */
             --hero-img: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1920&auto=format&fit=crop');
         }
 
@@ -71,7 +70,6 @@
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a:hover { color: var(--primary); }
         
-        /* دکمه تغییر تم */
         .theme-toggle {
             background: none;
             border: 1px solid var(--primary);
@@ -108,7 +106,6 @@
             justify-content: center;
             text-align: center;
             padding: 0 5%;
-            /* استفاده از متغیر برای عکس پس‌زمینه */
             background: var(--hero-img);
             background-size: cover;
             background-attachment: fixed;
@@ -119,7 +116,6 @@
         .hero span { color: var(--primary); }
         .hero p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; color: var(--text); opacity: 0.8; }
         
-        /* --- Section Defaults --- */
         .section { padding: 4rem 5%; }
         .section-title { text-align: center; font-size: 2rem; margin-bottom: 3rem; }
         .section-title span { border-bottom: 3px solid var(--primary); padding-bottom: 10px; }
@@ -279,8 +275,10 @@
                 prod_title: "منوی دیجیتال هوشمند",
                 prod_desc: "پرفروش‌ترین محصول ما. یک منوی کامل با قابلیت سفارش‌گیری واتساپ و اتصال مستقیم به اکسل.",
                 prod_li1: "✅ متصل به گوگل شیت (بدون نیاز به ادمین)",
-                prod_li2: "✅ قابلیت روزشمار اشتراک و قفل خودکار",
-                prod_li3: "✅ دکمه سفارش سالن و بیرون‌بر",
+                prod_li2: "✅ سرعت بسیاربالا وثبت تغییرات منو و... بصورت آنی ودرلحظه",
+                prod_li3: "✅ قابلیت روزشمار اشتراک و قفل خودکار",
+                prod_li4: "✅ دکمه سفارش سالن و بیرون‌بر",
+                prod_li4: "✅ اتصال به درگاه بانکی",
                 view_demo: "👀 مشاهده نمونه زنده",
                 contact_title: "شروع همکاری",
                 contact_desc: "برای مشاوره رایگان و سفارش منوی اختصاصی خودتان، همین حالا تماس بگیرید.",
@@ -366,7 +364,6 @@
             }
         }
 
-        // --- مدیریت تم و تغییر بک‌گراند ---
         function toggleTheme() {
             const body = document.body;
             const btn = document.getElementById('themeToggle');
@@ -381,7 +378,6 @@
             }
         }
 
-        // اعمال تم ذخیره شده در لود اولیه
         (function() {
             const savedTheme = localStorage.getItem('theme');
             if(savedTheme === 'light') {
@@ -390,6 +386,5 @@
             }
         })();
     </script>
-
 </body>
 </html>
