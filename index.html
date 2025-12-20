@@ -12,9 +12,6 @@
             --text: #ffffff;
             --accent: #27ae60;
             --header-bg: rgba(19, 19, 26, 0.95);
-            /* آدرس عکس‌ها به صورت کاملاً مجزا */
-            --hero-img-dark: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop');
-            --hero-img-light: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1920&auto=format&fit=crop');
         }
 
         .light-mode {
@@ -71,7 +68,7 @@
 
         .cta-btn { background: var(--primary); color: #000; padding: 0.5rem 1.5rem; border-radius: 5px; font-weight: bold; transition: 0.3s; }
 
-        /* --- اصلاح نهایی بخش Hero --- */
+        /* --- اصلاح نهایی و قطعی Hero --- */
         .hero {
             min-height: 90vh;
             display: flex;
@@ -80,30 +77,23 @@
             text-align: center;
             padding: 2rem 5%;
             position: relative;
-            z-index: 1;
-            /* رنگ پس‌زمینه رزرو شده برای زمان لود عکس */
-            background-color: #000;
-            /* تعریف بک‌گراند بدون تلفیق با گرادینت در این مرحله */
-            background-image: var(--hero-img-dark);
+            background-color: #13131a; /* رنگ رزرو برای تم تیره */
+            /* آدرس مستقیم برای تضمین نمایش در موبایل */
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop');
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            transition: background 0.5s ease;
         }
 
-        /* لایه تاریک‌کننده جداگانه برای جلوگیری از باگ موبایل */
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: -1;
+        /* تغییر مستقیم پس‌زمینه هنگام فعال شدن تم روشن */
+        .light-mode .hero {
+            background-color: #f5f5f7; /* رنگ رزرو برای تم روشن */
+            background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1920&auto=format&fit=crop');
         }
 
-        .light-mode .hero { background-image: var(--hero-img-light); }
-        .light-mode .hero::before { background: rgba(255, 255, 255, 0.7); }
-
-        .hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); color: var(--text); position: relative; }
+        .hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); color: var(--text); text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         .hero p { font-size: 1.1rem; color: var(--text); opacity: 0.9; margin: 1rem 0 2rem; }
 
         .section { padding: 4rem 5%; }
@@ -126,10 +116,11 @@
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            /* غیرفعال کردن fixed فقط برای موبایل جهت نمایش قطعی تصویر */
+            /* در موبایل ویژگی fixed باعث حذف عکس می‌شود، آن را به scroll تغییر می‌دهیم */
             .hero { 
                 background-attachment: scroll !important; 
                 background-position: center center;
+                min-height: 80vh;
             }
             .showcase { flex-direction: column; padding: 1.5rem; }
             .showcase-text { min-width: 100%; text-align: center; }
@@ -173,17 +164,17 @@
             <div class="feature-card">
                 <div class="icon">🚀</div>
                 <h3 data-i18n="feat1_title">سریع و سبک</h3>
-                <p data-i18n="feat1_desc">بدون نیاز به نصب هیچ اپلیکیشنی، مشتریان با یک اسکن ساده دسترسی دارند.</p>
+                <p data-i18n="feat1_desc">بدون نیاز به نصب اپلیکیشن.</p>
             </div>
             <div class="feature-card">
                 <div class="icon">📊</div>
                 <h3 data-i18n="feat2_title">کنترل با اکسل</h3>
-                <p data-i18n="feat2_desc">شما مدیر سایت خود هستید! قیمت‌ها را از طریق گوگل شیت در لحظه تغییر دهید.</p>
+                <p data-i18n="feat2_desc">تغییر آنی قیمت با گوگل شیت.</p>
             </div>
             <div class="feature-card">
                 <div class="icon">💰</div>
                 <h3 data-i18n="feat3_title">مقرون به صرفه</h3>
-                <p data-i18n="feat3_desc">هزینه طراحی بسیار کمتر از سایت‌های وردپرسی یا اپلیکیشن‌های اختصاصی.</p>
+                <p data-i18n="feat3_desc">هزینه طراحی بسیار کمتر.</p>
             </div>
         </div>
     </section>
@@ -196,12 +187,12 @@
             </div>
             <div class="showcase-text">
                 <h3 data-i18n="prod_title">منوی دیجیتال هوشمند</h3>
-                <p data-i18n="prod_desc">پرفروش‌ترین محصول ما. یک منوی کامل با قابلیت سفارش‌گیری واتساپ و اتصال مستقیم به اکسل.</p>
+                <p data-i18n="prod_desc">پرفروش‌ترین محصول ما.</p>
                 <ul>
-                    <li data-i18n="prod_li1">✅ متصل به گوگل شیت (بدون نیاز به ادمین)</li>
-                    <li data-i18n="prod_li2">✅ سرعت بسیاربالا وثبت تغییرات منو و... بصورت آنی ودرلحظه</li>
-                    <li data-i18n="prod_li3">✅ قابلیت روزشمار اشتراک و قفل خودکار</li>
-                    <li data-i18n="prod_li4">✅ دکمه سفارش سالن و بیرون‌بر</li>
+                    <li data-i18n="prod_li1">✅ متصل به گوگل شیت</li>
+                    <li data-i18n="prod_li2">✅ ثبت تغییرات آنی</li>
+                    <li data-i18n="prod_li3">✅ قفل خودکار اشتراک</li>
+                    <li data-i18n="prod_li4">✅ سفارش سالن</li>
                     <li data-i18n="prod_li5">✅ اتصال به درگاه بانکی</li>
                 </ul>
                 <br>
@@ -212,16 +203,7 @@
         </div>
     </section>
 
-    <section class="section contact" id="contact">
-        <h2 class="section-title"><span data-i18n="contact_title">شروع همکاری</span></h2>
-        <p data-i18n="contact_desc">برای مشاوره رایگان و سفارش منوی اختصاصی خودتان، همین حالا تماس بگیرید.</p>
-        <div class="contact-links">
-            <a href="https://wa.me/989105710039" class="contact-btn">پیام در واتساپ</a>
-            <a href="tel:09105710039" class="contact-btn">تماس تلفنی</a>
-        </div>
-    </section>
-
-    <footer>
+    <footer id="contact">
         <p data-i18n="footer">طراحی و توسعه توسط گروه نرم‌افزاری مَجد | 2025</p>
     </footer>
 
@@ -233,31 +215,29 @@
                 btn_order: "سفارش پروژه", hero_title: "تحول دیجیتال کسب‌وکار شما<br>با <span style='color:var(--primary)'>ابزارهای هوشمند</span>",
                 hero_desc: "ما به رستوران‌ها و کافه‌ها کمک می‌کنیم تا بدون هزینه‌های سنگین اپلیکیشن، منوی خود را آنلاین و حرفه‌ای کنند.",
                 hero_btn: "مشاهده محصولات", why_us: "چرا ما؟",
-                feat1_title: "سریع و سبک", feat1_desc: "بدون نیاز به نصب اپلیکیشن.",
-                feat2_title: "کنترل با اکسل", feat2_desc: "تغییر آنی قیمت با گوگل شیت.",
-                feat3_title: "مقرون به صرفه", feat3_desc: "هزینه طراحی بسیار کمتر.",
+                feat1_title: "سریع و سبک", feat1_desc: "دسترسی فوری با اسکن QR.",
+                feat2_title: "کنترل با اکسل", feat2_desc: "مدیریت قیمت‌ها در لحظه.",
+                feat3_title: "مقرون به صرفه", feat3_desc: "بهترین کیفیت با کمترین هزینه.",
                 products_title: "محصولات برتر", prod_title: "منوی دیجیتال هوشمند",
                 prod_desc: "پرفروش‌ترین محصول ما.", prod_li1: "✅ متصل به گوگل شیت",
                 prod_li2: "✅ ثبت تغییرات آنی", prod_li3: "✅ قفل خودکار اشتراک",
                 prod_li4: "✅ سفارش سالن", prod_li5: "✅ اتصال به درگاه بانکی",
-                view_demo: "👀 مشاهده نمونه زنده", contact_title: "شروع همکاری",
-                contact_desc: "همین حالا تماس بگیرید.", footer: "گروه نرم‌افزاری مَجد | 2025"
+                view_demo: "👀 مشاهده نمونه زنده", footer: "گروه نرم‌افزاری مَجد | 2025"
             },
             en: {
-                logo_text: "Majd Software Group",
+                logo_text: "Majd Software",
                 nav_home: "Home", nav_products: "Products", nav_contact: "Contact",
                 btn_order: "Order", hero_title: "Digital Transformation<br>with <span style='color:var(--primary)'>Smart Tools</span>",
                 hero_desc: "We help restaurants digitize their menus professionally.",
                 hero_btn: "View Products", why_us: "Why Us?",
-                feat1_title: "Fast & Light", feat1_desc: "No App Installation.",
-                feat2_title: "Excel Control", feat2_desc: "Google Sheets integration.",
-                feat3_title: "Cost Effective", feat3_desc: "Lower design costs.",
+                feat1_title: "Fast & Light", feat1_desc: "No installation required.",
+                feat2_title: "Excel Control", feat2_desc: "Live price updates.",
+                feat3_title: "Cost Effective", feat3_desc: "Affordable solutions.",
                 products_title: "Top Products", prod_title: "Smart Menu",
                 prod_desc: "Our Best-Seller.", prod_li1: "✅ Google Sheets sync",
                 prod_li2: "✅ Instant updates", prod_li3: "✅ Auto-lock",
                 prod_li4: "✅ Dine-in orders", prod_li5: "✅ Payment gateway",
-                view_demo: "👀 Live Demo", contact_title: "Start Now",
-                contact_desc: "Call us today.", footer: "Majd Software Group | 2025"
+                view_demo: "👀 Live Demo", footer: "Majd Software Group | 2025"
             }
         };
 
