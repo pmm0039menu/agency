@@ -12,6 +12,8 @@
             --text: #ffffff;    /* متن */
             --accent: #27ae60;  /* سبز */
             --header-bg: rgba(19, 19, 26, 0.95);
+            /* متغیر عکس پس‌زمینه تیره */
+            --hero-img: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop');
         }
 
         /* --- استایل‌های تم روشن --- */
@@ -20,6 +22,8 @@
             --card: #ffffff;
             --text: #1a1a1a;
             --header-bg: rgba(255, 255, 255, 0.95);
+            /* متغیر عکس پس‌زمینه روشن */
+            --hero-img: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1920&auto=format&fit=crop');
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tahoma', 'Segoe UI', sans-serif; scroll-behavior: smooth; }
@@ -104,14 +108,16 @@
             justify-content: center;
             text-align: center;
             padding: 0 5%;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop');
+            /* استفاده از متغیر برای عکس پس‌زمینه */
+            background: var(--hero-img);
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
+            transition: background 0.5s ease-in-out;
         }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 0 5px 15px rgba(0,0,0,0.5); color: #fff; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 0 5px 15px rgba(0,0,0,0.5); color: var(--text); }
         .hero span { color: var(--primary); }
-        .hero p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; color: #ccc; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; color: var(--text); opacity: 0.8; }
         
         /* --- Section Defaults --- */
         .section { padding: 4rem 5%; }
@@ -324,7 +330,7 @@
                 feat1_title: "سريع وخفيف",
                 feat1_desc: "لا حاجة لتثبيت التطبيق. يصل العملاء عبر مسح بسيط.",
                 feat2_title: "التحكم عبر إكسل",
-                feat2_desc: "حدث الأسعار فوراً عبر جوجل شیت.",
+                feat2_desc: "حدث الأسعار فوراً عبر گوگل شیت.",
                 feat3_title: "اقتصادي",
                 feat3_desc: "تكلفة أقل بكثير من المواقع والتطبيقات الخاصة.",
                 products_title: "منتجاتنا",
@@ -360,7 +366,7 @@
             }
         }
 
-        // --- مدیریت تم ---
+        // --- مدیریت تم و تغییر بک‌گراند ---
         function toggleTheme() {
             const body = document.body;
             const btn = document.getElementById('themeToggle');
