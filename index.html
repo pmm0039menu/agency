@@ -12,10 +12,8 @@
             --text: #ffffff;
             --accent: #27ae60;
             --header-bg: rgba(19, 19, 26, 0.95);
-            /* عکس پس‌زمینه دسکتاپ - حالت تیره */
+            /* عکس پس‌زمینه مخصوص کامپیوتر (حالت تیره) */
             --hero-img: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop');
-            /* عکس پس‌زمینه موبایل - حالت تیره (آدرس عکس مخصوص موبایل را اینجا بگذارید) */
-            --hero-img-mobile: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1526738549149-8e07eca2c1b4?q=80&w=720&auto=format&fit=crop');
         }
 
         .light-mode {
@@ -24,10 +22,8 @@
             --card: #ffffff;
             --text: #1a1a1a;
             --header-bg: rgba(255, 255, 255, 0.95);
-            /* عکس پس‌زمینه دسکتاپ - حالت روشن */
+            /* عکس پس‌زمینه مخصوص کامپیوتر (حالت روشن) */
             --hero-img: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1920&auto=format&fit=crop');
-            /* عکس پس‌زمینه موبایل - حالت روشن (آدرس عکس مخصوص موبایل را اینجا بگذارید) */
-            --hero-img-mobile: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=720&auto=format&fit=crop');
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tahoma', 'Segoe UI', sans-serif; scroll-behavior: smooth; }
@@ -78,6 +74,7 @@
 
         .cta-btn { background: var(--primary); color: #000; padding: 0.5rem 1.5rem; border-radius: 5px; font-weight: bold; }
 
+        /* استایل پایه بخش Hero */
         .hero {
             min-height: 90vh;
             display: flex;
@@ -89,6 +86,7 @@
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
+            transition: 0.5s;
         }
         .hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); margin-bottom: 1rem; }
         .hero p { font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; opacity: 0.8; }
@@ -115,20 +113,30 @@
 
         footer { text-align: center; padding: 2rem; border-top: 1px solid #222; color: #666; }
 
-        /* --- استایل‌های اختصاصی موبایل --- */
+        /* --- استایل‌های کاملاً مجزا برای مرورگر موبایل --- */
         @media (max-width: 768px) {
-            header { padding: 1rem 3%; }
-            .nav-links { display: none; }
-            
-            /* اعمال عکس مخصوص موبایل */
-            .hero { 
-                background: var(--hero-img-mobile) !important; 
-                background-size: cover !important;
+            .hero {
+                /* در موبایل ویژگی fixed حذف شده تا عکس نمایش داده شود */
+                background-attachment: scroll !important; 
                 background-position: center center !important;
-                background-attachment: scroll !important; /* حیاتی برای نمایش صحیح در مرورگر موبایل */
+                background-size: cover !important;
                 min-height: 80vh;
             }
-            
+
+            /* عکس مخصوص مرورگر موبایل - وقتی سایت روی حالت تیره است */
+            body:not(.light-mode) .hero {
+                background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=720&auto=format&fit=crop') !important;
+            }
+
+            /* عکس مخصوص مرورگر موبایل - وقتی سایت روی حالت روشن است */
+            body.light-mode .hero {
+                background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
+                url('https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=720&auto=format&fit=crop') !important;
+            }
+
+            header { padding: 1rem 3%; }
+            .nav-links { display: none; }
             .hero h1 { font-size: 1.8rem; }
             .showcase { padding: 1.5rem; flex-direction: column; }
             .showcase-text ul { text-align: right; }
@@ -161,7 +169,7 @@
     <section class="hero" id="home">
         <div>
             <h1 data-i18n="hero_title">تحول دیجیتال کسب‌وکار شما<br>با <span style="color:var(--primary)">ابزارهای هوشمند</span></h1>
-            <p data-i18n="hero_desc">ما به رستوران‌ها و کافه‌ها کمک می‌کنیم تا بدون هزینه‌های سنگین اپلیکیشن، منوی خود را آنلاین، حرفه‌ای و داینامیک کنند.</p>
+            <p data-i18n="hero_desc">ما به رستوران‌ها و کافه‌ها کمک می‌کنیم تا منوی خود را آنلاین، حرفه‌ای و داینامیک کنند.</p>
             <a href="#products" class="cta-btn" style="padding: 12px 35px; font-size: 1.2rem;" data-i18n="hero_btn">مشاهده محصولات</a>
         </div>
     </section>
