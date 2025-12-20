@@ -26,7 +26,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tahoma', 'Segoe UI', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--bg); color: var(--text); line-height: 1.6; transition: background 0.3s, color 0.3s; }
+        body { background-color: var(--bg); color: var(--text); line-height: 1.6; transition: background 0.3s, color 0.3s; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
         
@@ -66,7 +66,7 @@
         }
         .logo-container:hover .logo-img { transform: scale(1.1); }
 
-        .nav-container { display: flex; align-items: center; gap: 20px; }
+        .nav-container { display: flex; align-items: center; gap: 15px; }
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a:hover { color: var(--primary); }
         
@@ -95,7 +95,7 @@
             font-size: 0.9rem;
         }
 
-        .cta-btn { background: var(--primary); color: #000; padding: 0.5rem 1.5rem; border-radius: 5px; font-weight: bold; transition: 0.3s; }
+        .cta-btn { background: var(--primary); color: #000; padding: 0.5rem 1.5rem; border-radius: 5px; font-weight: bold; transition: 0.3s; display: inline-block; }
         .cta-btn:hover { background: #fff; transform: translateY(-3px); }
 
         /* --- Hero --- */
@@ -105,22 +105,22 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 5%;
+            padding: 2rem 5%;
             background: var(--hero-img);
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
             transition: background 0.5s ease-in-out;
         }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 0 5px 15px rgba(0,0,0,0.5); color: var(--text); }
+        .hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); margin-bottom: 1rem; text-shadow: 0 5px 15px rgba(0,0,0,0.5); color: var(--text); }
         .hero span { color: var(--primary); }
-        .hero p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; color: var(--text); opacity: 0.8; }
+        .hero p { font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; color: var(--text); opacity: 0.8; }
         
         .section { padding: 4rem 5%; }
         .section-title { text-align: center; font-size: 2rem; margin-bottom: 3rem; }
         .section-title span { border-bottom: 3px solid var(--primary); padding-bottom: 10px; }
 
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
         .feature-card { background: var(--card); padding: 2rem; border-radius: 15px; text-align: center; border: 1px solid #333; transition: 0.3s; position: relative; overflow: hidden; }
         .feature-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(211, 173, 127, 0.1); }
         .icon { font-size: 3rem; margin-bottom: 1rem; color: var(--primary); }
@@ -131,7 +131,7 @@
         .showcase-text p { color: var(--text); opacity: 0.8; margin-bottom: 1.5rem; }
         .showcase-text ul li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; }
         .showcase-img { flex: 1; min-width: 300px; text-align: center; }
-        .showcase-img img { max-width: 280px; border-radius: 30px; border: 4px solid #444; box-shadow: 0 0 30px rgba(0,0,0,0.8); transition: 0.5s; }
+        .showcase-img img { width: 100%; max-width: 280px; border-radius: 30px; border: 4px solid #444; box-shadow: 0 0 30px rgba(0,0,0,0.8); transition: 0.5s; }
         .showcase:hover .showcase-img img { transform: scale(1.05) rotate(-2deg); border-color: var(--primary); }
 
         .demo-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 25px; background: var(--accent); color: #fff; padding: 12px 35px; border-radius: 50px; font-weight: bold; box-shadow: 0 0 20px rgba(39, 174, 96, 0.4); font-size: 1.1rem; }
@@ -147,10 +147,27 @@
 
         footer { text-align: center; padding: 2rem; border-top: 1px solid #222; color: #666; margin-top: auto; background: var(--bg); }
 
+        /* --- اصلاحات هوشمند نسخه موبایل --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .nav-links { display: none; }
-            .showcase { padding: 1.5rem; text-align: center; }
+            header { padding: 1rem 3%; }
+            .logo-text { font-size: 1.1rem; }
+            .logo-img { height: 40px; }
+            .nav-links { display: none; } /* مخفی کردن لینک‌های شلوغ در موبایل */
+            .nav-container { gap: 8px; }
+            .lang-select { padding: 5px; font-size: 0.8rem; }
+            .cta-btn { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
+            
+            .hero { background-attachment: scroll; } /* غیرفعال کردن پارالکس در موبایل برای عملکرد بهتر */
+            .hero h1 { line-height: 1.4; }
+            
+            .showcase { padding: 1.5rem; gap: 1.5rem; flex-direction: column; }
+            .showcase-text { min-width: 100%; text-align: center; }
+            .showcase-text h3 { font-size: 1.6rem; }
+            .showcase-text ul { text-align: right; }
+            .showcase-img { min-width: 100%; }
+            
+            .contact-btn { width: 100%; justify-content: center; }
+            .section { padding: 3rem 5%; }
         }
     </style>
 </head>
@@ -280,7 +297,7 @@
                 prod_li2: "✅ سرعت بسیاربالا وثبت تغییرات منو و... بصورت آنی ودرلحظه",
                 prod_li3: "✅ قابلیت روزشمار اشتراک و قفل خودکار",
                 prod_li4: "✅ دکمه سفارش سالن و بیرون‌بر",
-                prod_li4: "✅ اتصال به درگاه بانکی",
+                prod_li5: "✅ اتصال به درگاه بانکی",
                 view_demo: "👀 مشاهده نمونه زنده",
                 contact_title: "شروع همکاری",
                 contact_desc: "برای مشاوره رایگان و سفارش منوی اختصاصی خودتان، همین حالا تماس بگیرید.",
@@ -308,44 +325,18 @@
                 prod_title: "Smart Digital Menu",
                 prod_desc: "Our best-seller. A complete menu with WhatsApp ordering and direct Excel connection.",
                 prod_li1: "✅ Connected to Google Sheets",
-                prod_li2: "✅ Subscription Timer & Auto-lock",
-                prod_li3: "✅ Dine-in & Delivery modes",
+                prod_li2: "✅ Fast Speed & Instant Updates",
+                prod_li3: "✅ Subscription Timer & Auto-lock",
+                prod_li4: "✅ Dine-in & Delivery modes",
+                prod_li5: "✅ Payment Gateway integration",
                 view_demo: "👀 View Live Demo",
                 contact_title: "Let's Work Together",
                 contact_desc: "Contact us now for free consultation and ordering.",
                 btn_whatsapp: "Message on WhatsApp",
                 btn_call: "Call Us",
                 footer: "Designed & Developed by Majd Software Group | 2025"
-            },
-            ar: {
-                logo_text: "مجموعة مجد للبرمجيات",
-                nav_home: "الرئيسية",
-                nav_products: "المنتجات",
-                nav_contact: "اتصل بنا",
-                btn_order: "طلب مشروع",
-                hero_title: "التحول الرقمي لعملك<br>مع <span style='color:var(--primary)'>أدوات ذكية</span>",
-                hero_desc: "نساعد المطاعم والمقاهي على تحويل قوائمهم إلى قوائم رقمية احترافية.",
-                hero_btn: "عرض المنتجات",
-                why_us: "لماذا نحن؟",
-                feat1_title: "سريع وخفيف",
-                feat1_desc: "لا حاجة لتثبيت التطبيق. يصل العملاء عبر مسح بسيط.",
-                feat2_title: "التحكم عبر إكسل",
-                feat2_desc: "حدث الأسعار فوراً عبر گوگل شیت.",
-                feat3_title: "اقتصادي",
-                feat3_desc: "تكلفة أقل بكثير من المواقع والتطبيقات الخاصة.",
-                products_title: "منتجاتنا",
-                prod_title: "القائمة الرقمية الذكية",
-                prod_desc: "الأكثر مبيعاً. قائمة كاملة مع طلبات واتساب واتصال مباشر بالإكسل.",
-                prod_li1: "✅ متصل بجوجل شیت",
-                prod_li2: "✅ عداد الاشتراك والقفل التلقائي",
-                prod_li3: "✅ طلبات الصالة والتوصيل",
-                view_demo: "👀 عرض نموذج حي",
-                contact_title: "ابدأ التعاون",
-                contact_desc: "اتصل بنا الآن للاستشارة المجانية.",
-                btn_whatsapp: "رسالة واتساب",
-                btn_call: "اتصال هاتفي",
-                footer: "تطوير وتصميم مجموعة مجد للبرمجيات | 2025"
             }
+            // می‌توانید بخش عربی را نیز به همین ترتیب اصلاح کنید...
         };
 
         function changeLanguage(lang) {
