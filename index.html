@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>گروه نرم‌افزاری مَجد | Majd Software Group</title>
+    <title>مجدسافت | MajdSoft</title>
     <style>
         :root {
             --primary: #d3ad7f; /* رنگ طلایی اصلی */
@@ -17,7 +17,7 @@
 
         /* --- استایل‌های تم روشن --- */
         .light-mode {
-            --primary: #b08d5c; /* طلایی تیره‌تر و غلیظ‌تر برای وضوح بیشتر در تم روشن */
+            --primary: #b08d5c;
             --bg: #f5f5f7;
             --card: #ffffff;
             --text: #1a1a1a;
@@ -70,19 +70,28 @@
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a:hover { color: var(--primary); }
         
+        /* --- استایل جدید دکمه تم (کوچک و گرد) --- */
         .theme-toggle {
-            background: none;
-            border: 1px solid var(--primary);
+            background: transparent;
+            border: none;
             color: var(--primary);
             cursor: pointer;
-            padding: 5px 8px;
-            border-radius: 5px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             font-size: 1.2rem;
             display: flex;
             align-items: center;
-            transition: 0.3s;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
-        .theme-toggle:hover { background: var(--primary); color: #000; }
+        
+        .theme-toggle:hover {
+            background-color: rgba(211, 173, 127, 0.1);
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 0 10px var(--primary);
+        }
+        /* ------------------------------------- */
 
         .lang-select {
             background: transparent;
@@ -152,12 +161,12 @@
             header { padding: 1rem 3%; }
             .logo-text { font-size: 1.1rem; }
             .logo-img { height: 40px; }
-            .nav-links { display: none; } /* مخفی کردن لینک‌های شلوغ در موبایل */
+            .nav-links { display: none; }
             .nav-container { gap: 8px; }
             .lang-select { padding: 5px; font-size: 0.8rem; }
             .cta-btn { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
             
-            .hero { background-attachment: scroll; } /* غیرفعال کردن پارالکس در موبایل برای عملکرد بهتر */
+            .hero { background-attachment: scroll; }
             .hero h1 { line-height: 1.4; }
             
             .showcase { padding: 1.5rem; gap: 1.5rem; flex-direction: column; }
@@ -176,7 +185,7 @@
     <header>
         <a href="#" class="logo-container">
             <img src="logom.jpg" alt="Majd Logo" class="logo-img">
-            <span class="logo-text" data-i18n="logo_text">گروه نرم‌افزاری مَجد</span>
+            <span class="logo-text" data-i18n="logo_text">مجدسافت</span>
         </a>
 
         <div class="nav-container">
@@ -269,7 +278,7 @@
     </section>
 
     <footer>
-        <p data-i18n="footer">طراحی و توسعه توسط گروه نرم‌افزاری مَجد | 2025</p>
+        <p data-i18n="footer">طراحی و توسعه توسط مجدسافت | 2025</p>
     </footer>
 
     <script>
