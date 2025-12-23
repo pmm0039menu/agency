@@ -70,19 +70,37 @@
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a:hover { color: var(--primary); }
         
+        /* --- استایل جدید و مدرن برای دکمه تغییر تم --- */
         .theme-toggle {
-            background: none;
-            border: 1px solid var(--primary);
+            background: transparent;
+            border: 2px solid transparent; /* حاشیه شفاف اولیه */
             color: var(--primary);
             cursor: pointer;
-            padding: 5px 8px;
-            border-radius: 5px;
-            font-size: 1.2rem;
+            /* ابعاد دقیق برای دایره شدن */
+            width: 35px;
+            height: 35px;
+            padding: 0;
+            border-radius: 50%; /* کاملا گرد */
+            font-size: 1.2rem; /* سایز آیکون */
             display: flex;
             align-items: center;
-            transition: 0.3s;
+            justify-content: center;
+            /* انیمیشن نرم‌تر */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            /* یک سایه محو خیلی ملایم در حالت عادی */
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
         }
-        .theme-toggle:hover { background: var(--primary); color: #000; }
+        
+        .theme-toggle:hover {
+            /* در حالت هاور، حاشیه رنگی می‌شود */
+            border-color: var(--primary);
+            /* افکت درخشش (Glow) با رنگ اصلی */
+            box-shadow: 0 0 15px var(--primary), inset 0 0 10px var(--primary);
+            /* کمی چرخش و بزرگنمایی برای جذابیت */
+            transform: rotate(15deg) scale(1.1);
+            color: var(--primary); /* رنگ آیکون تغییر نمی‌کند */
+        }
+        /* --- پایان استایل جدید دکمه تم --- */
 
         .lang-select {
             background: transparent;
