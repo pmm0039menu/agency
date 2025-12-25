@@ -70,21 +70,21 @@
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a:hover { color: var(--primary); }
         
-        /* --- استایل جدید دکمه تم (کوچک و گرد) --- */
+        /* --- دکمه تم --- */
         .theme-toggle {
             background: transparent;
             border: none;
             color: var(--primary);
             cursor: pointer;
-            width: 30px;       /* قبلاً 40px بود */
-            height: 30px;      /* قبلاً 40px بود */
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            font-size: 1rem;   /* قبلاً 1.2rem بود - اندازه آیکون */
+            font-size: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            margin-left: 5px;  /* کمی فاصله از المان‌های کناری */
+            margin-left: 5px;
         }
         
         .theme-toggle:hover {
@@ -92,7 +92,6 @@
             transform: rotate(15deg) scale(1.1);
             box-shadow: 0 0 10px var(--primary);
         }
-        /* ------------------------------------- */
 
         .lang-select {
             background: transparent;
@@ -155,11 +154,9 @@
         .contact-btn.whatsapp { color: #25D366; }
         .contact-btn.phone { color: var(--primary); }
 
-        
-        /* تنظیمات فوتر */
         footer { text-align: center; padding: 2rem; border-top: 1px solid #222; color: #666; margin-top: auto; background: var(--bg); }
 
-        /* --- استایل‌های بخش نمونه کارها (جدید) --- */
+        /* --- استایل‌های بخش نمونه کارها (کامل) --- */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -244,7 +241,7 @@
             font-size: 0.9rem;
         }
 
-        /* --- اصلاحات نهایی و بی‌نقص موبایل (کامل) --- */
+        /* --- اصلاحات هوشمند موبایل (نسخه نهایی) --- */
         @media (max-width: 768px) {
             header { padding: 0.5rem 2%; }
             .logo-text { font-size: clamp(0.7rem, 3.5vw, 1rem); white-space: nowrap; }
@@ -277,7 +274,7 @@
 
     <header>
         <a href="#" class="logo-container">
-            <img src="logom.jpg" alt="MajdSoft" class="logo-img">
+            <img src="logo.png" alt="MajdSoft" class="logo-img">
             <span class="logo-text" data-i18n="logo_text">گروه نرم‌افزاری مَجد</span>
         </a>
 
@@ -285,50 +282,7 @@
             <nav class="nav-links">
                 <a href="#home" data-i18n="nav_home">خانه</a>
                 <a href="#products" data-i18n="nav_products">محصولات</a>
-                <section class="section" id="portfolio">
-        <h2 class="section-title"><span>پروژه‌های انجام شده</span></h2>
-        
-        <div class="portfolio-grid">
-            <div class="portfolio-card">
-                <div class="portfolio-img">
-                    <img src="demo-cafe.jpg" alt="منوی کافه">
-                    <div class="overlay">
-                        <a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a>
-                    </div>
-                </div>
-                <div class="portfolio-info">
-                    <h3>کافه رستوران لمیز</h3>
-                    <p>طراحی مدرن با تم تیره مخصوص کافه‌ها</p>
-                </div>
-            </div>
-
-            <div class="portfolio-card">
-                <div class="portfolio-img">
-                    <img src="demo-fastfood.jpg" alt="منوی فست فود">
-                    <div class="overlay">
-                        <a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a>
-                    </div>
-                </div>
-                <div class="portfolio-info">
-                    <h3>فست‌فود برگر کینگ</h3>
-                    <p>منوی هیجانی با قابلیت انتخاب تاپینگ</p>
-                </div>
-            </div>
-
-            <div class="portfolio-card">
-                <div class="portfolio-img">
-                    <img src="demo-traditional.jpg" alt="منوی رستوران سنتی">
-                    <div class="overlay">
-                        <a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a>
-                    </div>
-                </div>
-                <div class="portfolio-info">
-                    <h3>رستوران سنتی نایب</h3>
-                    <p>دسته‌بندی اصیل ایرانی با رابط کاربری ساده</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                <a href="#portfolio" data-i18n="nav_portfolio">نمونه‌کارها</a>
                 <a href="#contact" data-i18n="nav_contact">تماس</a>
             </nav>
             
@@ -399,6 +353,51 @@
         </div>
     </section>
 
+    <section class="section" id="portfolio">
+        <h2 class="section-title"><span>پروژه‌های انجام شده</span></h2>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="portfolio-img">
+                    <img src="demo-cafe.jpg" alt="منوی کافه">
+                    <div class="overlay">
+                        <a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>کافه رستوران لمیز</h3>
+                    <p>طراحی مدرن با تم تیره مخصوص کافه‌ها</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img">
+                    <img src="demo-fastfood.jpg" alt="منوی فست فود">
+                    <div class="overlay">
+                        <a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>فست‌فود برگر کینگ</h3>
+                    <p>منوی هیجانی با قابلیت انتخاب تاپینگ</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img">
+                    <img src="demo-traditional.jpg" alt="منوی رستوران سنتی">
+                    <div class="overlay">
+                        <a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>رستوران سنتی نایب</h3>
+                    <p>دسته‌بندی اصیل ایرانی با رابط کاربری ساده</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section contact" id="contact">
         <h2 class="section-title"><span data-i18n="contact_title">شروع همکاری</span></h2>
         <p data-i18n="contact_desc">برای مشاوره رایگان و سفارش منوی اختصاصی خودتان، همین حالا تماس بگیرید.</p>
@@ -415,13 +414,13 @@
     </section>
 
     <footer>
-        <p data-i18n="footer">طراحی و توسعه توسط مجدسافت | 2025</p>
+        <p data-i18n="footer">طراحی و توسعه توسط گروه نرم‌افزاری مَجد | 2025</p>
     </footer>
 
     <script>
         const translations = {
         fa: {
-            logo_text: "گروه نرم‌افزاری مَجد",  // فارسی با فتحه روی م
+            logo_text: "گروه نرم‌افزاری مَجد",
             nav_home: "خانه",
             nav_products: "محصولات",
             nav_portfolio: "نمونه‌کارها",
@@ -453,7 +452,7 @@
             footer: "طراحی و توسعه توسط گروه نرم‌افزاری مَجد | 2025"
         },
         en: {
-            logo_text: "Majd Software Group", // ترجمه انگلیسی صحیح
+            logo_text: "Majd Software Group",
             nav_home: "Home",
             nav_products: "Products",
             nav_portfolio: "Portfolio",
@@ -485,7 +484,7 @@
             footer: "Designed & Developed by Majd Software Group | 2025"
         },
         ar: {
-            logo_text: "مجموعة مَجد للبرمجيات", // ترجمه عربی با فتحه روی م
+            logo_text: "مجموعة مَجد للبرمجيات",
             nav_home: "الرئيسية",
             nav_products: "المنتجات",
             nav_portfolio: "المشاريع",
@@ -531,7 +530,7 @@
                 htmlTag.lang = 'en';
             } else {
                 htmlTag.setAttribute('dir', 'rtl');
-                htmlTag.lang = lang;
+                htmlTag.lang = 'lang';
             }
         }
 
