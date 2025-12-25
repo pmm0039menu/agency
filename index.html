@@ -156,105 +156,101 @@
 
         footer { text-align: center; padding: 2rem; border-top: 1px solid #222; color: #666; margin-top: auto; background: var(--bg); }
 
-        /* --- استایل‌های بخش نمونه کارها (حالت اسلایدی مدرن) --- */
-        .portfolio-slider {
-            display: flex;
-            overflow-x: auto;       /* اجازه اسکرول افقی */
-            gap: 20px;
-            padding: 20px 5px;      /* کمی فاصله برای سایه‌ها */
-            scroll-snap-type: x mandatory; /* حالت آهنربایی برای ورق زدن */
-            -webkit-overflow-scrolling: touch; /* نرم بودن اسکرول در آیفون */
-            scrollbar-width: none;  /* مخفی کردن نوار اسکرول در فایرفاکس */
-        }
-        
-        /* مخفی کردن نوار اسکرول در کروم و سافاری */
-        .portfolio-slider::-webkit-scrollbar {
-            display: none;
+        /* --- استایل‌های بخش نمونه کارها (کادر جدید + دکمه‌ها) --- */
+        /* کادر شکیل دور اسلایدر */
+        .portfolio-box {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem 1rem; /* فاصله داخلی */
+            border: 1px solid #333;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative; /* برای قرارگیری دکمه‌ها */
+            max-width: 1200px;
+            margin: 0 auto; /* وسط چین کردن کادر */
         }
 
+        .portfolio-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 10px 5px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* مخفی کردن اسکرول بار */
+            scroll-behavior: smooth; /* حرکت نرم */
+        }
+        
+        .portfolio-slider::-webkit-scrollbar { display: none; }
+
         .portfolio-card {
-            min-width: 300px;       /* عرض ثابت هر کارت */
-            max-width: 300px;
-            background: var(--card);
+            min-width: 280px;
+            max-width: 280px;
+            background: var(--bg); /* کمی تیره‌تر از کادر اصلی */
             border-radius: 15px;
             overflow: hidden;
-            border: 1px solid #333;
+            border: 1px solid #444;
             transition: 0.4s;
             position: relative;
-            scroll-snap-align: center; /* کارت همیشه وسط صفحه می‌ایستد */
-            flex-shrink: 0;         /* جلوگیری از جمع شدن کارت‌ها */
+            scroll-snap-align: center;
+            flex-shrink: 0;
         }
 
         .portfolio-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        .portfolio-img {
-            position: relative;
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .portfolio-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
-        }
-
-        .portfolio-card:hover .portfolio-img img {
-            transform: scale(1.1);
-        }
+        .portfolio-img { position: relative; height: 180px; overflow: hidden; }
+        .portfolio-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .portfolio-card:hover .portfolio-img img { transform: scale(1.1); }
 
         .overlay {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: 0.3s;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.3s;
         }
-
-        .portfolio-card:hover .overlay {
-            opacity: 1;
-        }
+        .portfolio-card:hover .overlay { opacity: 1; }
 
         .view-btn {
+            background: var(--primary); color: #000; padding: 8px 20px;
+            border-radius: 50px; font-weight: bold; transform: translateY(20px); transition: 0.3s; font-size: 0.9rem;
+        }
+        .portfolio-card:hover .view-btn { transform: translateY(0); }
+
+        .portfolio-info { padding: 1rem; text-align: center; }
+        .portfolio-info h3 { color: var(--primary); margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .portfolio-info p { color: var(--text); opacity: 0.7; font-size: 0.85rem; white-space: normal; }
+
+        /* دکمه‌های ورق زدن */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
             background: var(--primary);
             color: #000;
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            transform: translateY(20px);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
             transition: 0.3s;
         }
+        .slider-btn:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
+        .prev-btn { left: -20px; }
+        .next-btn { right: -20px; }
 
-        .portfolio-card:hover .view-btn {
-            transform: translateY(0);
+        /* در موبایل دکمه‌ها کمی داخل‌تر بیایند */
+        @media (max-width: 768px) {
+            .prev-btn { left: -10px; width: 35px; height: 35px; }
+            .next-btn { right: -10px; width: 35px; height: 35px; }
+            .portfolio-box { padding: 1.5rem 0.5rem; }
         }
-
-        .portfolio-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .portfolio-info h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
-
-        .portfolio-info p {
-            color: var(--text);
-            opacity: 0.7;
-            font-size: 0.9rem;
-            white-space: normal; /* جلوگیری از بهم ریختگی متن */
-        }
-
         /* --- اصلاحات هوشمند موبایل (نسخه نهایی) --- */
         @media (max-width: 768px) {
             header { padding: 0.5rem 2%; }
@@ -370,76 +366,71 @@
     <section class="section" id="portfolio">
         <h2 class="section-title"><span>پروژه‌های انجام شده</span></h2>
         
-        <div class="portfolio-slider">
+        <div class="portfolio-box">
+            <button class="slider-btn prev-btn" onclick="moveSlider('left')">❮</button>
             
-            <div class="portfolio-card">
-                <div class="portfolio-img">
-                    <img src="demo-cafe.jpg" alt="منوی کافه">
-                    <div class="overlay">
-                        <a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a>
+            <div class="portfolio-slider" id="projectSlider">
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-img">
+                        <img src="demo-cafe.jpg" alt="منوی کافه">
+                        <div class="overlay"><a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>کافه رستوران لمیز</h3>
+                        <p>طراحی مدرن با تم تیره مخصوص کافه‌ها</p>
                     </div>
                 </div>
-                <div class="portfolio-info">
-                    <h3>کافه رستوران لمیز</h3>
-                    <p>طراحی مدرن با تم تیره مخصوص کافه‌ها</p>
-                </div>
-            </div>
 
-            <div class="portfolio-card">
-                <div class="portfolio-img">
-                    <img src="demo-fastfood.jpg" alt="منوی فست فود">
-                    <div class="overlay">
-                        <a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a>
+                <div class="portfolio-card">
+                    <div class="portfolio-img">
+                        <img src="demo-fastfood.jpg" alt="منوی فست فود">
+                        <div class="overlay"><a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>فست‌فود برگر کینگ</h3>
+                        <p>منوی هیجانی با قابلیت انتخاب تاپینگ</p>
                     </div>
                 </div>
-                <div class="portfolio-info">
-                    <h3>فست‌فود برگر کینگ</h3>
-                    <p>منوی هیجانی با قابلیت انتخاب تاپینگ</p>
-                </div>
-            </div>
 
-            <div class="portfolio-card">
-                <div class="portfolio-img">
-                    <img src="demo-traditional.jpg" alt="منوی رستوران سنتی">
-                    <div class="overlay">
-                        <a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a>
+                <div class="portfolio-card">
+                    <div class="portfolio-img">
+                        <img src="demo-traditional.jpg" alt="منوی رستوران سنتی">
+                        <div class="overlay"><a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>رستوران سنتی نایب</h3>
+                        <p>دسته‌بندی اصیل ایرانی با رابط کاربری ساده</p>
                     </div>
                 </div>
-                <div class="portfolio-info">
-                    <h3>رستوران سنتی سلطان</h3>
-                    <p>دسته‌بندی اصیل ایرانی با رابط کاربری ساده</p>
-                </div>
-            </div>
 
-            <div class="portfolio-card">
-                <div class="portfolio-img">
-                    <img src="demo-traditional2.jpg" alt="سفره‌خانه سنتی">
-                    <div class="overlay">
-                        <a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a>
+                <div class="portfolio-card">
+                    <div class="portfolio-img">
+                        <img src="demo-traditional2.jpg" alt="سفره‌خانه سنتی">
+                        <div class="overlay"><a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>سفره‌خانه سنتی ترنج</h3>
+                        <p>فضایی نوستالژیک با قابلیت رزرو تخت</p>
                     </div>
                 </div>
-                <div class="portfolio-info">
-                    <h3>سفره‌خانه سنتی ترنج</h3>
-                    <p>فضایی نوستالژیک با قابلیت رزرو تخت و موسیقی</p>
-                </div>
-            </div>
 
-            <div class="portfolio-card">
-                <div class="portfolio-img">
-                    <img src="demo-juice.jpg" alt="منوی آبمیوه">
-                    <div class="overlay">
-                        <a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a>
+                <div class="portfolio-card">
+                    <div class="portfolio-img">
+                        <img src="demo-juice.jpg" alt="منوی آبمیوه">
+                        <div class="overlay"><a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a></div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>آبمیوه و بستنی شاد</h3>
+                        <p>طراحی رنگارنگ با تمرکز بر تصاویر</p>
                     </div>
                 </div>
-                <div class="portfolio-info">
-                    <h3>آبمیوه و بستنی شاد</h3>
-                    <p>طراحی رنگارنگ با تمرکز بر تصاویر جذاب</p>
-                </div>
-            </div>
 
+            </div>
+            
+            <button class="slider-btn next-btn" onclick="moveSlider('right')">❯</button>
         </div>
     </section>
-
     <section class="section contact" id="contact">
         <h2 class="section-title"><span data-i18n="contact_title">شروع همکاری</span></h2>
         <p data-i18n="contact_desc">برای مشاوره رایگان و سفارش منوی اختصاصی خودتان، همین حالا تماس بگیرید.</p>
@@ -597,6 +588,17 @@
                 document.getElementById('themeToggle').innerHTML = "☀️";
             }
         })();
+        /* تابع ورق زدن اسلایدر */
+        function moveSlider(direction) {
+            const slider = document.getElementById('projectSlider');
+            const cardWidth = 300; // اندازه کارت + فاصله
+            
+            if(direction === 'right') {
+                slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+            }
+        }
     </script>
 </body>
 </html>
