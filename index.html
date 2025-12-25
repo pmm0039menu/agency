@@ -157,14 +157,14 @@
 
         footer { text-align: center; padding: 2rem; border-top: 1px solid #222; color: #666; margin-top: auto; background: var(--bg); }
 
-        /* --- اصلاحات هوشمند و کامل نسخه موبایل (هدر + کل صفحه) --- */
+        /* --- اصلاحات نهایی و بی‌نقص موبایل --- */
         @media (max-width: 768px) {
-            /* 1. تنظیمات هدر و منو */
+            /* 1. تنظیمات هدر و منوی بالا */
             header { 
                 padding: 0.5rem 2%; 
             }
             .logo-text { 
-                font-size: clamp(0.7rem, 3.5vw, 1rem); /* فونت هوشمند */
+                font-size: clamp(0.7rem, 3.5vw, 1rem); 
                 white-space: nowrap; 
             }
             .logo-img { 
@@ -174,20 +174,24 @@
                 display: none; 
             }
             .nav-container { 
-                gap: 4px; 
+                gap: 5px; 
             }
+            
+            /* تنظیمات دکمه‌های کوچک داخل هدر (زبان و سفارش) */
             .lang-select { 
                 padding: 0 3px; 
                 font-size: 0.7rem; 
                 height: 28px;
             }
-            .cta-btn { 
+            /* نکته مهم: اینجا فقط دکمه داخل هدر را هدف گرفتیم */
+            .nav-container .cta-btn { 
                 padding: 0 8px; 
                 font-size: 0.7rem; 
                 height: 28px;
                 line-height: 28px; 
                 white-space: nowrap;
             }
+            
             .theme-toggle {
                 width: 26px;
                 height: 26px;
@@ -195,9 +199,17 @@
                 margin-left: 2px;
             }
 
-            /* 2. تنظیمات بقیه بخش‌های سایت (بسیار مهم برای موبایل) */
+            /* 2. تنظیمات دکمه بزرگ وسط صفحه (اصلاح خرابی) */
+            .hero .cta-btn {
+                height: auto !important;       /* ارتفاع آزاد */
+                padding: 10px 25px !important; /* اندازه مناسب لمس */
+                font-size: 1rem !important;    /* فونت خوانا */
+                line-height: normal !important;
+            }
+
+            /* 3. سایر بخش‌ها */
             .hero { background-attachment: scroll; }
-            .hero h1 { line-height: 1.4; }
+            .hero h1 { line-height: 1.4; font-size: 1.8rem; } /* کمی کوچک‌تر کردن تیتر بزرگ */
             
             .showcase { padding: 1.5rem; gap: 1.5rem; flex-direction: column; }
             .showcase-text { min-width: 100%; text-align: center; }
