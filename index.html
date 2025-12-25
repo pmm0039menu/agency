@@ -157,16 +157,45 @@
 
         footer { text-align: center; padding: 2rem; border-top: 1px solid #222; color: #666; margin-top: auto; background: var(--bg); }
 
-        /* --- اصلاحات هوشمند نسخه موبایل --- */
+        /* --- اصلاحات هوشمند و کامل نسخه موبایل (هدر + کل صفحه) --- */
         @media (max-width: 768px) {
-            header { padding: 1rem 3%; }
-            .logo-text { font-size: 1.1rem; }
-            .logo-img { height: 40px; }
-            .nav-links { display: none; }
-            .nav-container { gap: 8px; }
-            .lang-select { padding: 5px; font-size: 0.8rem; }
-            .cta-btn { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
-            
+            /* 1. تنظیمات هدر و منو */
+            header { 
+                padding: 0.5rem 2%; 
+            }
+            .logo-text { 
+                font-size: clamp(0.7rem, 3.5vw, 1rem); /* فونت هوشمند */
+                white-space: nowrap; 
+            }
+            .logo-img { 
+                height: 30px; 
+            }
+            .nav-links { 
+                display: none; 
+            }
+            .nav-container { 
+                gap: 4px; 
+            }
+            .lang-select { 
+                padding: 0 3px; 
+                font-size: 0.7rem; 
+                height: 28px;
+            }
+            .cta-btn { 
+                padding: 0 8px; 
+                font-size: 0.7rem; 
+                height: 28px;
+                line-height: 28px; 
+                white-space: nowrap;
+            }
+            .theme-toggle {
+                width: 26px;
+                height: 26px;
+                font-size: 0.8rem;
+                margin-left: 2px;
+            }
+
+            /* 2. تنظیمات بقیه بخش‌های سایت (بسیار مهم برای موبایل) */
             .hero { background-attachment: scroll; }
             .hero h1 { line-height: 1.4; }
             
