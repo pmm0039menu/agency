@@ -156,20 +156,33 @@
 
         footer { text-align: center; padding: 2rem; border-top: 1px solid #222; color: #666; margin-top: auto; background: var(--bg); }
 
-        /* --- استایل‌های بخش نمونه کارها (کامل) --- */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        /* --- استایل‌های بخش نمونه کارها (حالت اسلایدی مدرن) --- */
+        .portfolio-slider {
+            display: flex;
+            overflow-x: auto;       /* اجازه اسکرول افقی */
+            gap: 20px;
+            padding: 20px 5px;      /* کمی فاصله برای سایه‌ها */
+            scroll-snap-type: x mandatory; /* حالت آهنربایی برای ورق زدن */
+            -webkit-overflow-scrolling: touch; /* نرم بودن اسکرول در آیفون */
+            scrollbar-width: none;  /* مخفی کردن نوار اسکرول در فایرفاکس */
+        }
+        
+        /* مخفی کردن نوار اسکرول در کروم و سافاری */
+        .portfolio-slider::-webkit-scrollbar {
+            display: none;
         }
 
         .portfolio-card {
+            min-width: 300px;       /* عرض ثابت هر کارت */
+            max-width: 300px;
             background: var(--card);
             border-radius: 15px;
             overflow: hidden;
             border: 1px solid #333;
             transition: 0.4s;
             position: relative;
+            scroll-snap-align: center; /* کارت همیشه وسط صفحه می‌ایستد */
+            flex-shrink: 0;         /* جلوگیری از جمع شدن کارت‌ها */
         }
 
         .portfolio-card:hover {
@@ -239,6 +252,7 @@
             color: var(--text);
             opacity: 0.7;
             font-size: 0.9rem;
+            white-space: normal; /* جلوگیری از بهم ریختگی متن */
         }
 
         /* --- اصلاحات هوشمند موبایل (نسخه نهایی) --- */
@@ -356,7 +370,8 @@
     <section class="section" id="portfolio">
         <h2 class="section-title"><span>پروژه‌های انجام شده</span></h2>
         
-        <div class="portfolio-grid">
+        <div class="portfolio-slider">
+            
             <div class="portfolio-card">
                 <div class="portfolio-img">
                     <img src="demo-cafe.jpg" alt="منوی کافه">
@@ -391,11 +406,12 @@
                     </div>
                 </div>
                 <div class="portfolio-info">
-                    <h3>رستوران سنتی نایب</h3>
+                    <h3>رستوران سنتی سلطان</h3>
                     <p>دسته‌بندی اصیل ایرانی با رابط کاربری ساده</p>
                 </div>
             </div>
-        </div>
+            
+            </div>
     </section>
 
     <section class="section contact" id="contact">
