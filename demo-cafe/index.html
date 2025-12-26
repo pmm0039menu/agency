@@ -108,30 +108,29 @@
             flex-direction: row;
             align-items: center; 
             
-            /* --- تغییر ۱: جهت متن هوشمند --- */
-            text-align: start; 
+            text-align: start; /* جهت متن هوشمند */
             
             background: #fff;
             
-            /* تنظیم گردی گوشه‌ها */
-            border-radius: 15px; 
+            /* بازگرداندن حالت نیم‌گرد برای فارسی */
+            border-radius: 50px 15px 15px 50px; 
             
             padding: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             border: none;
-            
-            /* --- تغییر ۲: نوار رنگی هوشمند (راست در فارسی، چپ در انگلیسی) --- */
             border-inline-start: 4px solid var(--primary); 
-            
             min-height: 110px;
+        }
+
+        /* این تکه کد جادویی برای انگلیسی است */
+        /* وقتی زبان انگلیسی شود، جهت گردی کادر را برعکس می‌کند */
+        html[dir="ltr"] body.style-restaurant .item {
+            border-radius: 15px 50px 50px 15px;
         }
         
         body.style-restaurant .item img {
             width: 80px; height: 80px; border-radius: 50%; 
-            
-            /* --- تغییر ۳: فاصله عکس تا متن هوشمند --- */
-            margin-inline-end: 15px; 
-            
+            margin-inline-end: 15px; /* فاصله هوشمند عکس از متن */
             margin-bottom: 0;
             border: 2px solid var(--primary);
             flex-shrink: 0;
@@ -139,22 +138,41 @@
 
         body.style-restaurant .item h3 { 
             height: auto; 
-            margin-bottom: 5px; 
+            margin-bottom: 0; /* حذف فاصله اضافه */
             color: #333; 
             margin-top: 0; 
         }
 
-        /* وسط‌چین کردن عمودی محتوا */
+        /* وسط‌چین کردن دقیق متن و دکمه */
         body.style-restaurant .item > div { 
             flex: 1; 
             display: flex;             
             flex-direction: column;    
-            justify-content: center;   
+            justify-content: center;   /* وسط‌چین عمودی */
+            gap: 10px;                 /* فاصله منظم بین تیتر و دکمه */
             height: 100%;              
         } 
 
-        body.style-restaurant .add-btn { width: auto; display: inline-block; background: var(--primary); }
-        body.style-restaurant .qty-box { width: auto; display: inline-flex; }
+        body.style-restaurant .add-btn { 
+            width: auto; 
+            display: inline-block; 
+            background: var(--primary); 
+            /* این دو خط زیر مشکل چسبیدن به پایین را حل می‌کنند */
+            margin-top: 0 !important; 
+            margin-bottom: 0 !important;
+            align-self: flex-start; /* دکمه هم‌تراز با شروع متن باشد */
+        }
+
+        /* برای اینکه دکمه در انگلیسی هم درست تراز شود */
+        html[dir="ltr"] body.style-restaurant .add-btn {
+             align-self: flex-start;
+        }
+
+        body.style-restaurant .qty-box { 
+            width: auto; 
+            display: inline-flex; 
+            margin-top: 0 !important; /* جلوگیری از چسبیدن به پایین */
+        }
 
         /* --- استایل ۳: فست‌فود (رنگی + کارتی) --- */
         body.style-fastfood {
