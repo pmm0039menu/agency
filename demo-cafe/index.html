@@ -106,21 +106,17 @@
         body.style-restaurant .item {
             display: flex; 
             flex-direction: row;
-            /* این خط کلیدی است: همه چیز را در راستای افقی وسط‌چین می‌کند */
             align-items: center; 
-            
             text-align: start; 
             background: #fff;
             
-            /* تنظیم گردی گوشه‌ها (یک طرف گرد، یک طرف صاف) */
+            /* تنظیم گردی گوشه‌ها */
             border-radius: 50px 15px 15px 50px; 
             
             padding: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             border: none;
             border-inline-start: 4px solid var(--primary); 
-            
-            /* ارتفاع ثابت */
             height: 110px; 
         }
 
@@ -139,42 +135,42 @@
 
         body.style-restaurant .item h3 { 
             height: auto; 
-            margin: 0 0 8px 0; /* کمی فاصله پایین تیتر */
+            margin: 0 0 5px 0; 
             color: #333; 
             font-size: 0.95rem;
         }
 
-        /* --- بخش مهم: وسط‌چین کردن محتویات متنی --- */
+        /* باکس متن */
         body.style-restaurant .item > div { 
             flex: 1; 
             display: flex;             
             flex-direction: column;    
-            /* این دستور دکمه و متن را دقیقا در مرکز عمودی جمع می‌کند */
             justify-content: center;   
             height: 100%;              
         } 
 
-        /* --- تنظیمات دکمه برای قرارگیری دقیق در وسط --- */
+        /* --- دستور حرکت میلی‌متری (دکمه قرمز) --- */
         body.style-restaurant .add-btn { 
             width: auto; 
             display: inline-block; 
             background: var(--primary); 
-            
-            /* حذف هرگونه فاصله‌ی مزاحم که دکمه را هل می‌دهد */
-            margin-top: 0 !important; 
-            margin-bottom: 0 !important;
-            
+            margin: 0 !important;
             align-self: flex-start; 
+
+            /* این خط دکمه را حدود 4 میلی‌متر بالا می‌کشد */
+            transform: translateY(-15px); 
         }
 
-        /* تنظیم باکس تعداد هم مثل دکمه */
+        /* --- دستور حرکت میلی‌متری (باکس مثبت/منفی) --- */
+        /* این هم باید بالا برود تا وقتی دکمه تبدیل به شمارشگر شد، جایش درست باشد */
         body.style-restaurant .qty-box { 
             width: auto; 
             display: inline-flex; 
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;
+            margin: 0 !important;
+            
+            /* همان مقدار بالا رفتن */
+            transform: translateY(-15px); 
         }
-
         /* --- استایل ۳: فست‌فود (رنگی + کارتی) --- */
         body.style-fastfood {
             --bg: #fff5f5;      
