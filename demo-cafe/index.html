@@ -182,9 +182,16 @@
             font-weight: bold;
         }
 
-        /* اصلاح رنگ دکمه‌های شمارشگر داخل فاکتور */
+        /* --- اصلاح نهایی رنگ‌ها --- */
+
+        /* ۱. عدد داخل دکمه‌های مثبت و منفی باید همیشه سفید باشد (چون دکمه مشکی است) */
         body.style-restaurant .qty-box .q-num {
-            color: #000 !important;
+            color: #ffffff !important; 
+        }
+
+        /* ۲. اما اسم غذاها در فاکتور باید مشکی بماند (چون کاغذ فاکتور سفید است) */
+        body.style-restaurant .summary-item {
+            color: #000000 !important; 
         }
         /* --- استایل ۳: فست‌فود (رنگی + کارتی) --- */
         body.style-fastfood {
