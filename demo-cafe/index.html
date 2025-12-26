@@ -332,39 +332,25 @@ body.style-fastfood .item:active {
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
         }
-        /* --- اصلاح اجباری رنگ‌ها (روش قدرتمند) --- */
+        /* --- اصلاح نهایی رنگ‌ها بر اساس ساختار دقیق قالب شما --- */
 
-/* ۱. تمام نوشته‌های داخل بدنه مدال را به زور مشکی کن */
-body.style-fastfood .modal-body,
-body.style-fastfood .modal-body div,
-body.style-fastfood .modal-body span,
-body.style-fastfood .modal-body p,
-body.style-fastfood .modal-body h1,
-body.style-fastfood .modal-body h2,
-body.style-fastfood .modal-body h3,
-body.style-fastfood .modal-body h4,
-body.style-fastfood .modal-body h5,
-body.style-fastfood .modal-body h6,
-body.style-fastfood .modal-body li {
-    color: #2f3542 !important;
+/* ۱. اسم غذا (اسپرسو) که اولین نوشته است -> مشکی شود */
+body.style-fastfood .summary-item > span:first-child {
+    color: #000000 !important; /* مشکی خالص */
+    font-weight: 900 !important; /* ضخیم و خوانا */
+    font-size: 1rem !important;
 }
 
-/* ۲. دکمه‌های مثبت و منفی را سفید نگه دار (که خراب نشن) */
-body.style-fastfood .modal-body button,
-body.style-fastfood .modal-body .btn,
-body.style-fastfood .modal-body .fa,
-body.style-fastfood .modal-body i {
-    color: inherit !important; /* یا رنگ دلخواه */
+/* ۲. قیمت غذا که آخرین نوشته است -> صورتی شود */
+body.style-fastfood .summary-item > span:last-child {
+    color: #ff6b81 !important; /* رنگ صورتی اصلی */
+    font-weight: bold !important;
+    font-size: 1.1rem !important;
 }
 
-/* ۳. تلاش برای پیدا کردن قیمت (معمولا سمت چپ یا کلاس‌های رایج) */
-/* اگر این کار نکرد، باید اسم دقیق کلاس قیمت را پیدا کنیم */
-body.style-fastfood .modal-body div[class*="price"],
-body.style-fastfood .modal-body span[class*="price"],
-body.style-fastfood .modal-body .text-danger, /* گاهی قیمت قرمز است */
-body.style-fastfood .modal-body div:first-child span { /* حدس: اولین عنصر سمت چپ */
-    color: #ff6b81 !important;
-    font-weight: 800 !important;
+/* ۳. اگر احیاناً باز هم دیده نشد، رنگ کل ردیف را مشکی کن */
+body.style-fastfood .summary-item {
+    color: #333 !important;
 }
         /* --- بخش‌های عمومی --- */
         .order-details { background: var(--card); padding: 15px; border-top: 2px solid var(--primary); position: fixed; bottom: 80px; left: 0; right: 0; z-index: 900; display: none; max-width: 600px; margin: 0 auto; border-radius: 15px 15px 0 0; box-shadow: 0 -5px 20px rgba(0,0,0,0.5); overflow-y: auto; max-height: 70vh; }
