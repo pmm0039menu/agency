@@ -106,31 +106,32 @@
         body.style-restaurant .item {
             display: flex; 
             flex-direction: row;
+            /* این خط کلیدی است: همه چیز را در راستای افقی وسط‌چین می‌کند */
             align-items: center; 
             
-            text-align: start; /* جهت متن هوشمند */
-            
+            text-align: start; 
             background: #fff;
             
-            /* بازگرداندن حالت نیم‌گرد برای فارسی */
+            /* تنظیم گردی گوشه‌ها (یک طرف گرد، یک طرف صاف) */
             border-radius: 50px 15px 15px 50px; 
             
             padding: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             border: none;
             border-inline-start: 4px solid var(--primary); 
-            min-height: 110px;
+            
+            /* ارتفاع ثابت */
+            height: 110px; 
         }
 
-        /* این تکه کد جادویی برای انگلیسی است */
-        /* وقتی زبان انگلیسی شود، جهت گردی کادر را برعکس می‌کند */
+        /* قرینه کردن کادر در حالت انگلیسی */
         html[dir="ltr"] body.style-restaurant .item {
             border-radius: 15px 50px 50px 15px;
         }
         
         body.style-restaurant .item img {
             width: 80px; height: 80px; border-radius: 50%; 
-            margin-inline-end: 15px; /* فاصله هوشمند عکس از متن */
+            margin-inline-end: 15px; 
             margin-bottom: 0;
             border: 2px solid var(--primary);
             flex-shrink: 0;
@@ -138,40 +139,40 @@
 
         body.style-restaurant .item h3 { 
             height: auto; 
-            margin-bottom: 0; /* حذف فاصله اضافه */
+            margin: 0 0 8px 0; /* کمی فاصله پایین تیتر */
             color: #333; 
-            margin-top: 0; 
+            font-size: 0.95rem;
         }
 
-        /* وسط‌چین کردن دقیق متن و دکمه */
+        /* --- بخش مهم: وسط‌چین کردن محتویات متنی --- */
         body.style-restaurant .item > div { 
             flex: 1; 
             display: flex;             
             flex-direction: column;    
-            justify-content: center;   /* وسط‌چین عمودی */
-            gap: 10px;                 /* فاصله منظم بین تیتر و دکمه */
+            /* این دستور دکمه و متن را دقیقا در مرکز عمودی جمع می‌کند */
+            justify-content: center;   
             height: 100%;              
         } 
 
+        /* --- تنظیمات دکمه برای قرارگیری دقیق در وسط --- */
         body.style-restaurant .add-btn { 
             width: auto; 
             display: inline-block; 
             background: var(--primary); 
-            /* این دو خط زیر مشکل چسبیدن به پایین را حل می‌کنند */
+            
+            /* حذف هرگونه فاصله‌ی مزاحم که دکمه را هل می‌دهد */
             margin-top: 0 !important; 
             margin-bottom: 0 !important;
-            align-self: flex-start; /* دکمه هم‌تراز با شروع متن باشد */
+            
+            align-self: flex-start; 
         }
 
-        /* برای اینکه دکمه در انگلیسی هم درست تراز شود */
-        html[dir="ltr"] body.style-restaurant .add-btn {
-             align-self: flex-start;
-        }
-
+        /* تنظیم باکس تعداد هم مثل دکمه */
         body.style-restaurant .qty-box { 
             width: auto; 
             display: inline-flex; 
-            margin-top: 0 !important; /* جلوگیری از چسبیدن به پایین */
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
         }
 
         /* --- استایل ۳: فست‌فود (رنگی + کارتی) --- */
