@@ -171,6 +171,21 @@
             /* همان مقدار بالا رفتن */
             transform: translateY(-15px); 
         }
+        /* --- اصلاح رنگ‌های فاکتور (مخصوص تم رستوران) --- */
+        body.style-restaurant .summary-item {
+            color: #000 !important; /* اسم غذا مشکی شود */
+            border-bottom: 1px solid #ddd !important;
+        }
+
+        body.style-restaurant .summary-item span:last-child {
+            color: var(--primary) !important; /* قیمت قرمز شود */
+            font-weight: bold;
+        }
+
+        /* اصلاح رنگ دکمه‌های شمارشگر داخل فاکتور */
+        body.style-restaurant .qty-box .q-num {
+            color: #000 !important;
+        }
         /* --- استایل ۳: فست‌فود (رنگی + کارتی) --- */
         body.style-fastfood {
             --bg: #fff5f5;      
