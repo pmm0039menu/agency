@@ -1,604 +1,438 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html id="mainHtml" lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مجدسافت | MajdSoft</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>منوی آنلاین هوشمند</title>
     <style>
-        :root {
-            --primary: #d3ad7f; /* رنگ طلایی اصلی */
-            --bg: #13131a;      /* پس زمینه تیره */
-            --card: #1e1e24;    /* کارت‌ها */
-            --text: #ffffff;    /* متن */
-            --accent: #27ae60;  /* سبز */
-            --header-bg: rgba(19, 19, 26, 0.95);
-            --hero-img: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop');
-        }
-
-        /* --- استایل‌های تم روشن --- */
-        .light-mode {
-            --primary: #b08d5c;
-            --bg: #f5f5f7;
-            --card: #ffffff;
-            --text: #1a1a1a;
-            --header-bg: rgba(255, 255, 255, 0.95);
-            --hero-img: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1920&auto=format&fit=crop');
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tahoma', 'Segoe UI', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--bg); color: var(--text); line-height: 1.6; transition: background 0.3s, color 0.3s; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-        
-        html[dir="ltr"] { text-align: left; }
-        html[dir="rtl"] { text-align: right; }
-
-        /* --- هدر --- */
-        header {
-            background: var(--header-bg);
-            padding: 1rem 5%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #333;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            transition: background 0.3s;
+        :root { 
+            /* متغیرهای پیش‌فرض (تم تاریک/کافه) */
+            --primary: #d3ad7f; 
+            --bg: #13131a; 
+            --card: #1e1e24; 
+            --text: #ffffff; 
+            --green: #27ae60; 
+            --blue: #2980b9; 
+            --input-bg: #2a2a35; 
+            --header-img: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=80');
+            --bg-img: url('https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1000&q=80');
         }
         
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px; 
-            text-decoration: none;
-        }
-        .logo-img {
-            height: 50px; 
-            width: auto;
-            transition: transform 0.3s;
-        }
-        .logo-text {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: var(--primary);
-        }
-        .logo-container:hover .logo-img { transform: scale(1.1); }
-
-        .nav-container { display: flex; align-items: center; gap: 15px; }
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a:hover { color: var(--primary); }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Tahoma', sans-serif; -webkit-tap-highlight-color: transparent; }
         
-        /* --- دکمه تم --- */
-        .theme-toggle {
-            background: transparent;
-            border: none;
-            color: var(--primary);
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            margin-left: 5px;
+        body { 
+            background: linear-gradient(rgba(19, 19, 26, 0.85), rgba(19, 19, 26, 0.85)), var(--bg-img); 
+            background-size: cover; background-attachment: fixed; background-position: center; 
+            color:var(--text); padding-bottom:150px; user-select: none; 
+            transition: background 0.3s, color 0.3s;
         }
+
+        header { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), var(--header-img); background-size: cover; background-position: center; padding: 50px 20px; text-align: center; border-bottom: 3px solid var(--primary); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.6); }
+
+        .lang-switch { position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; z-index: 1001; }
+        .lang-btn { background: rgba(0,0,0,0.7); border: 1px solid var(--primary); color: #fff; padding: 5px 10px; border-radius: 5px; font-size: 0.75rem; cursor: pointer; }
+        .lang-btn.active { background: var(--primary); color: #000; font-weight: bold; }
+
+        header h1 { font-size: 1.8rem; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-bottom: 5px; }
+        .status-badge { font-size: 0.85rem; padding: 5px 12px; border-radius: 12px; display: inline-block; margin-top: 5px; font-weight: bold; }
+        .open { background: #27ae60; color: #fff; } .closed { background: #c0392b; color: #fff; }
         
-        .theme-toggle:hover {
-            background-color: rgba(211, 173, 127, 0.1);
-            transform: rotate(15deg) scale(1.1);
-            box-shadow: 0 0 10px var(--primary);
+        .cat-scroll { display: flex; gap: 10px; padding: 15px; overflow-x: auto; background: rgba(11, 11, 15, 0.8); backdrop-filter: blur(5px); }
+        .cat-btn { background: var(--card); color: var(--text); padding: 8px 16px; border-radius: 20px; border: 1px solid #333; white-space: nowrap; cursor: pointer; }
+        .cat-btn.active { background: var(--primary); border-color: var(--primary); color: #000; font-weight: bold; }
+
+        /* =========================================
+           مدیریت استایل‌ها (Layout System)
+           ========================================= */
+
+        /* --- استایل پایه (پیش‌فرض / کافه) --- */
+        .menu-list { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; 
+            padding: 15px; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding-bottom: 100px;
         }
 
-        .lang-select {
-            background: transparent;
-            color: var(--text);
-            border: 1px solid var(--primary);
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            outline: none;
-            font-size: 0.9rem;
-        }
-
-        .cta-btn { background: var(--primary); color: #000; padding: 0.5rem 1.5rem; border-radius: 5px; font-weight: bold; transition: 0.3s; display: inline-block; }
-        .cta-btn:hover { background: #fff; transform: translateY(-3px); }
-
-        /* --- Hero --- */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem 5%;
-            background: var(--hero-img);
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-            transition: background 0.5s ease-in-out;
-        }
-        .hero h1 { font-size: clamp(1.8rem, 5vw, 3rem); margin-bottom: 1rem; text-shadow: 0 5px 15px rgba(0,0,0,0.5); color: var(--text); }
-        .hero span { color: var(--primary); }
-        .hero p { font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; color: var(--text); opacity: 0.8; }
-        
-        .section { padding: 4rem 5%; }
-        .section-title { text-align: center; font-size: 2rem; margin-bottom: 3rem; }
-        .section-title span { border-bottom: 3px solid var(--primary); padding-bottom: 10px; }
-
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .feature-card { background: var(--card); padding: 2rem; border-radius: 15px; text-align: center; border: 1px solid #333; transition: 0.3s; position: relative; overflow: hidden; }
-        .feature-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(211, 173, 127, 0.1); }
-        .icon { font-size: 3rem; margin-bottom: 1rem; color: var(--primary); }
-
-        .showcase { display: flex; flex-wrap: wrap; align-items: center; gap: 3rem; background: var(--card); border-radius: 20px; padding: 3rem; border: 1px solid #333; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .showcase-text { flex: 1; min-width: 300px; }
-        .showcase-text h3 { font-size: 2.2rem; margin-bottom: 1rem; color: var(--primary); }
-        .showcase-text p { color: var(--text); opacity: 0.8; margin-bottom: 1.5rem; }
-        .showcase-text ul li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; }
-        .showcase-img { flex: 1; min-width: 300px; text-align: center; }
-        .showcase-img img { width: 100%; max-width: 280px; border-radius: 30px; border: 4px solid #444; box-shadow: 0 0 30px rgba(0,0,0,0.8); transition: 0.5s; }
-        .showcase:hover .showcase-img img { transform: scale(1.05) rotate(-2deg); border-color: var(--primary); }
-
-        .demo-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 25px; background: var(--accent); color: #fff; padding: 12px 35px; border-radius: 50px; font-weight: bold; box-shadow: 0 0 20px rgba(39, 174, 96, 0.4); font-size: 1.1rem; }
-        .demo-btn:hover { background: #2ecc71; transform: scale(1.05); }
-
-        .contact { text-align: center; background: var(--bg); padding: 5rem 5%; border-top: 1px solid #222; }
-        .contact p { margin-bottom: 2rem; color: var(--text); opacity: 0.7; font-size: 1.2rem; }
-        .contact-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .contact-btn { background: var(--card); color: var(--text); padding: 15px 30px; border-radius: 12px; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; border: 1px solid #333; }
-        .contact-btn:hover { border-color: var(--primary); transform: translateY(-3px); }
-        .contact-btn.whatsapp { color: #25D366; }
-        .contact-btn.phone { color: var(--primary); }
-
-        footer { text-align: center; padding: 2rem; border-top: 1px solid #222; color: #666; margin-top: auto; background: var(--bg); }
-
-        /* --- استایل‌های بخش نمونه کارها (کادر جدید + دکمه‌ها) --- */
-        /* کادر شکیل دور اسلایدر */
-        .portfolio-box {
-            background: var(--card);
-            border-radius: 20px;
-            padding: 2rem 1rem; /* فاصله داخلی */
-            border: 1px solid #333;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            position: relative; /* برای قرارگیری دکمه‌ها */
-            max-width: 1200px;
-            margin: 0 auto; /* وسط چین کردن کادر */
-        }
-
-        .portfolio-slider {
-            display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            padding: 10px 5px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* مخفی کردن اسکرول بار */
-            scroll-behavior: smooth; /* حرکت نرم */
-        }
-        
-        .portfolio-slider::-webkit-scrollbar { display: none; }
-
-        .portfolio-card {
-            min-width: 280px;
-            max-width: 280px;
-            background: var(--bg); /* کمی تیره‌تر از کادر اصلی */
-            border-radius: 15px;
+        .item { 
+            background: rgba(30, 30, 36, 0.95); 
+            border-radius: 15px; 
+            padding: 10px; 
+            display: flex; 
+            flex-direction: column; 
+            border: 1px solid #333; 
+            animation: fadeIn 0.5s; 
+            position: relative; 
             overflow: hidden;
-            border: 1px solid #444;
-            transition: 0.4s;
-            position: relative;
-            scroll-snap-align: center;
-            flex-shrink: 0;
+            text-align: center;
         }
 
-        .portfolio-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .portfolio-img { position: relative; height: 180px; overflow: hidden; }
-        .portfolio-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .portfolio-card:hover .portfolio-img img { transform: scale(1.1); }
-
-        .overlay {
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.7);
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; transition: 0.3s;
-        }
-        .portfolio-card:hover .overlay { opacity: 1; }
-
-        .view-btn {
-            background: var(--primary); color: #000; padding: 8px 20px;
-            border-radius: 50px; font-weight: bold; transform: translateY(20px); transition: 0.3s; font-size: 0.9rem;
-        }
-        .portfolio-card:hover .view-btn { transform: translateY(0); }
-
-        .portfolio-info { padding: 1rem; text-align: center; }
-        .portfolio-info h3 { color: var(--primary); margin-bottom: 0.5rem; font-size: 1.1rem; }
-        .portfolio-info p { color: var(--text); opacity: 0.7; font-size: 0.85rem; white-space: normal; }
-
-        /* دکمه‌های ورق زدن */
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--primary);
-            color: #000;
+        .item img { 
+            width: 100%; 
+            height: 120px; 
+            border-radius: 10px; 
+            object-fit: cover; 
+            margin-bottom: 10px;
             border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 10;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            transition: 0.3s;
         }
-        .slider-btn:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
-        .prev-btn { left: -20px; }
-        .next-btn { right: -20px; }
 
-        /* در موبایل دکمه‌ها کمی داخل‌تر بیایند */
-        @media (max-width: 768px) {
-            .prev-btn { left: -10px; width: 35px; height: 35px; }
-            .next-btn { right: -10px; width: 35px; height: 35px; }
-            .portfolio-box { padding: 1.5rem 0.5rem; }
+        .item h3 {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            height: 40px; 
+            overflow: hidden;
+            color: var(--text);
         }
-        /* --- اصلاحات هوشمند موبایل (نسخه نهایی) --- */
-        @media (max-width: 768px) {
-            header { padding: 0.5rem 2%; }
-            .logo-text { font-size: clamp(0.7rem, 3.5vw, 1rem); white-space: nowrap; }
-            .logo-img { height: 30px; }
-            .nav-links { display: none; }
-            .nav-container { gap: 5px; }
-            .lang-select { padding: 0 3px; font-size: 0.7rem; height: 28px; }
-            
-            /* فقط دکمه هدر کوچک شود */
-            .nav-container .cta-btn { padding: 0 8px; font-size: 0.7rem; height: 28px; line-height: 28px; white-space: nowrap; }
-            
-            .theme-toggle { width: 26px; height: 26px; font-size: 0.8rem; margin-left: 2px; }
+        
+        .price { color: var(--primary); font-weight: bold; font-size: 1.1rem; display: block; margin-bottom: 5px;}
+        .add-btn { background: #333; color: #fff; padding: 6px 15px; border-radius: 8px; font-size: 0.9rem; cursor: pointer; width: 100%; margin-top: auto;}
+        .qty-box { display: flex; align-items: center; justify-content: space-between; background: #000; border-radius: 6px; border: 1px solid var(--primary); width: 100%; margin-top: auto;}
+        .q-btn { width: 35px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; color: var(--primary); }
+        .q-num { width: 25px; text-align: center; font-weight: bold; font-size: 1rem; color: #fff; }
 
-            /* دکمه وسط صفحه بزرگ بماند */
-            .hero .cta-btn { height: auto !important; padding: 10px 25px !important; font-size: 1rem !important; line-height: normal !important; }
 
-            .hero { background-attachment: scroll; }
-            .hero h1 { line-height: 1.4; font-size: 1.8rem; }
-            .showcase { padding: 1.5rem; gap: 1.5rem; flex-direction: column; }
-            .showcase-text { min-width: 100%; text-align: center; }
-            .showcase-text h3 { font-size: 1.6rem; }
-            .showcase-text ul { text-align: right; }
-            .showcase-img { min-width: 100%; }
-            .contact-btn { width: 100%; justify-content: center; }
-            .section { padding: 3rem 5%; }
+        /* --- استایل ۲: رستوران (روشن + لیستی) --- */
+        body.style-restaurant {
+            --bg: #f8f9fa;       
+            --card: #ffffff;
+            --text: #2d3436;     
+            --primary: #c0392b;  
+            --input-bg: #e9ecef;
+            --bg-img: none;
         }
+        body.style-restaurant .menu-list { display: flex; flex-direction: column; }
+        body.style-restaurant .item {
+            display: flex; 
+            flex-direction: row;
+            align-items: center; 
+            text-align: right;
+            background: #fff;
+            border-radius: 50px 15px 15px 50px; 
+            padding: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: none;
+            border-right: 4px solid var(--primary);
+        }
+        body.style-restaurant .item img {
+            width: 80px; height: 80px; border-radius: 50%; 
+            margin-left: 15px; margin-bottom: 0;
+            border: 2px solid var(--primary);
+        }
+        body.style-restaurant .item h3 { height: auto; margin-bottom: 5px; color: #333; }
+        body.style-restaurant .item > div { flex: 1; } /* Wrapper text */
+        body.style-restaurant .add-btn { width: auto; display: inline-block; background: var(--primary); }
+        body.style-restaurant .qty-box { width: auto; display: inline-flex; }
+
+        /* --- استایل ۳: فست‌فود (رنگی + کارتی) --- */
+        body.style-fastfood {
+            --bg: #fff5f5;      
+            --card: #ffffff;
+            --text: #2d3436;
+            --primary: #ff9f43; 
+            --input-bg: #ffeaa7;
+            --bg-img: none;
+        }
+        body.style-fastfood .menu-list { display: flex; flex-direction: column; gap: 20px; }
+        body.style-fastfood .item {
+            display: block; 
+            background: #fff;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(255, 159, 67, 0.2);
+            border: 2px solid var(--primary);
+            padding: 0;
+            text-align: right;
+        }
+        body.style-fastfood .item img { width: 100%; height: 180px; object-fit: cover; border-radius: 0; margin-bottom: 0; }
+        body.style-fastfood .item > div { padding: 15px; }
+        body.style-fastfood .item h3 { height: auto; color: #333; font-size: 1.2rem;}
+        body.style-fastfood .add-btn { width: auto; float: left; background: var(--primary); color: #000; }
+        body.style-fastfood .qty-box { width: auto; float: left; border-color: #000; background: #fff; }
+        body.style-fastfood .q-num { color: #000; }
+        body.style-fastfood .q-btn { color: #000; }
+
+
+        /* --- بخش‌های عمومی --- */
+        .order-details { background: var(--card); padding: 15px; border-top: 2px solid var(--primary); position: fixed; bottom: 80px; left: 0; right: 0; z-index: 900; display: none; max-width: 600px; margin: 0 auto; border-radius: 15px 15px 0 0; box-shadow: 0 -5px 20px rgba(0,0,0,0.5); overflow-y: auto; max-height: 70vh; }
+        .order-details.active { display: block; }
+        .close-details { position: absolute; top: 15px; left: 15px; width: 30px; height: 30px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; cursor: pointer; border: 1px solid var(--primary); }
+        
+        .type-selector { display: flex; gap: 10px; margin: 15px 0; }
+        .type-btn { flex: 1; padding: 10px; background: #000; border: 1px solid #333; color: #888; text-align: center; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .type-btn.selected { background: var(--primary); color: #000; border-color: var(--primary); }
+
+        .invoice-box { background: #111; padding: 10px; border-radius: 8px; margin-bottom: 15px; }
+        .invoice-row { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 5px; color: #ccc; }
+        .invoice-row.highlight { color: var(--primary); font-weight: bold; border-top: 1px solid #333; padding-top: 5px; margin-top: 5px; font-size: 1.1rem; }
+        
+        .summary-item { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; margin-bottom: 12px; color: #eee; border-bottom: 1px solid #2a2a35; padding-bottom: 8px; }
+
+        .input-group { margin-bottom: 10px; }
+        .input-group input, .input-group textarea { width: 100%; padding: 12px; background: var(--input-bg); border: 1px solid #333; color: var(--text); border-radius: 8px; outline: none; font-size: 0.9rem; text-align: inherit; }
+
+        .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #000; padding: 15px; z-index: 1000; display: none; border-top: 1px solid #333; }
+        .final-btn { background: var(--green); color: #fff; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1rem; text-align: center; width: 100%; }
+
+        .dev-footer { text-align: center; margin-top: 50px; padding: 30px 20px 80px 20px; border-top: 1px solid rgba(211, 173, 127, 0.2); background: rgba(14, 14, 18, 0.95); position: relative; z-index: 10; }
+        .dev-icons { display: flex; justify-content: center; gap: 20px; margin-top: 15px; }
+        .dev-icons a { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; background: #1a1a1a; border-radius: 50%; color: var(--primary); border: 1px solid var(--primary); text-decoration: none; }
+        .dev-icons svg { width: 22px; height: 22px; fill: currentColor; }
+
+        @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
     </style>
 </head>
 <body>
 
+    <div class="lang-switch">
+        <button class="lang-btn active" id="btn-fa" onclick="setLang('fa')">FA</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btn-ar" onclick="setLang('ar')">AR</button>
+    </div>
+
     <header>
-        <a href="#" class="logo-container">
-            <img src="logom.jpg" alt="MajdSoft" class="logo-img">
-            <span class="logo-text" data-i18n="logo_text">گروه نرم‌افزاری مَجد</span>
-        </a>
-
-        <div class="nav-container">
-            <nav class="nav-links">
-                <a href="#home" data-i18n="nav_home">خانه</a>
-                <a href="#products" data-i18n="nav_products">محصولات</a>
-                <a href="#portfolio" data-i18n="nav_portfolio">نمونه‌کارها</a>
-                <a href="#contact" data-i18n="nav_contact">تماس</a>
-            </nav>
-            
-            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="تغییر تم">
-                🌙
-            </button>
-
-            <select class="lang-select" onchange="changeLanguage(this.value)">
-                <option value="fa">فارسی</option>
-                <option value="en">English</option>
-                <option value="ar">العربية</option>
-            </select>
-            <a href="#contact" class="cta-btn" data-i18n="btn_order">سفارش پروژه</a>
-        </div>
+        <h1 id="shopName">...</h1>
+        <div id="shopStatus" class="status-badge">...</div>
     </header>
 
-    <section class="hero" id="home">
-        <div>
-            <h1 data-i18n="hero_title">تحول دیجیتال کسب‌وکار شما<br>با <span style="color:var(--primary)">ابزارهای هوشمند</span></h1>
-            <p data-i18n="hero_desc">ما به رستوران‌ها و کافه‌ها کمک می‌کنیم تا بدون هزینه‌های سنگین اپلیکیشن، منوی خود را آنلاین، حرفه‌ای و داینامیک کنند.</p>
-            <a href="#products" class="cta-btn" style="padding: 12px 35px; font-size: 1.2rem;" data-i18n="hero_btn">مشاهده محصولات</a>
+    <div class="cat-scroll" id="cats"></div>
+    <div class="menu-list" id="list"></div>
+
+    <div class="dev-footer">
+        <p id="devTitle" style="color: #fff; font-weight: bold;"></p>
+        <div class="dev-icons">
+            <a href="tel:09105710039"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+            <a href="https://t.me/pmm0039"><svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.75-.33 1.42.2 1.17 1.38l-2.75 12.96c-.2.9-1.52.84-2.1.28l-5.31-4.22-2.58 2.48c-.28.28-.52.51-1.06.51l.39-3.98z"/></svg></a>
+            <a href="https://wa.me/989105710039"><svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01C17.18 3.03 14.69 2 12.04 2zM12.05 19.81c-1.48 0-2.93-.4-4.21-1.15l-.3-.18-3.11.82.83-3.04-.19-.31c-.82-1.31-1.26-2.83-1.26-4.38 0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42 1.56 1.56 2.41 3.63 2.41 5.83 0 4.54-3.69 8.23-8.23 8.23z"/></svg></a>
         </div>
-    </section>
+    </div>
 
-    <section class="section" id="features">
-        <h2 class="section-title"><span data-i18n="why_us">چرا ما؟</span></h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="icon">🚀</div>
-                <h3 data-i18n="feat1_title">سریع و سبک</h3>
-                <p data-i18n="feat1_desc">بدون نیاز به نصب هیچ اپلیکیشنی، مشتریان با یک اسکن ساده دسترسی دارند.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">📊</div>
-                <h3 data-i18n="feat2_title">کنترل با اکسل</h3>
-                <p data-i18n="feat2_desc">شما مدیر سایت خود هستید! قیمت‌ها را از طریق گوگل شیت در لحظه تغییر دهید.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">💰</div>
-                <h3 data-i18n="feat3_title">مقرون به صرفه</h3>
-                <p data-i18n="feat3_desc">هزینه طراحی بسیار کمتر از سایت‌های وردپرسی یا اپلیکیشن‌های اختصاصی.</p>
-            </div>
+    <div class="order-details" id="orderDetails">
+        <div class="close-details" onclick="closeOrderWindow()">✕</div>
+        <h3 id="revTitle" style="text-align:center; margin-bottom:15px; color:var(--primary);">...</h3>
+        <div id="summaryList"></div>
+        <div class="type-selector">
+            <button class="type-btn selected" id="btn-table" onclick="setMode('table')">...</button>
+            <button class="type-btn" id="btn-delivery" onclick="setMode('delivery')">...</button>
         </div>
-    </section>
-
-    <section class="section" id="products">
-        <h2 class="section-title"><span data-i18n="products_title">محصولات برتر</span></h2>
-        
-        <div class="showcase">
-            <div class="showcase-img">
-                <img src="p.png" alt="منوی هوشمند" style="width: 100%; border-radius: 20px;">
-            </div>
-            <div class="showcase-text">
-                <h3 data-i18n="prod_title">منوی دیجیتال هوشمند</h3>
-                <p data-i18n="prod_desc">پرفروش‌ترین محصول ما. یک منوی کامل با قابلیت سفارش‌گیری واتساپ و اتصال مستقیم به اکسل.</p>
-                <ul>
-                    <li data-i18n="prod_li1">✅ متصل به گوگل شیت (بدون نیاز به ادمین)</li>
-                     <li data-i18n="prod_li2">✅ سرعت بسیاربالا وقابلیت تغییرمنو واطلاعات بصورت آنی و در لحظه</li>
-                    <li data-i18n="prod_li3">✅ قابلیت روزشمار اشتراک و قفل خودکار</li>
-                    <li data-i18n="prod_li4">✅ دکمه سفارش سالن و بیرون‌بر</li>
-                      <li data-i18n="prod_li5">✅ اتصال به درگاه بانکی</li>
-                </ul>
-                <br>
-                <a href="https://pmm0039menu.github.io/myenu/?id=1XoE-tWd9sor7HgqQe67z3JQCZyvt6G-IcSz9u1miRiw" target="_blank" class="demo-btn">
-                    <span data-i18n="view_demo">👀 مشاهده نمونه زنده</span>
-                </a>
-            </div>
+        <div class="invoice-box">
+            <div class="invoice-row"><span id="l-sub">...</span><span id="itemsTotal">0</span></div>
+            <div class="invoice-row highlight"><span id="l-total">...</span><span id="finalPayable">0</span></div>
         </div>
-    </section>
-
-    <section class="section" id="portfolio">
-        <h2 class="section-title"><span>پروژه‌های انجام شده</span></h2>
-        
-        <div class="portfolio-box">
-            <button class="slider-btn prev-btn" onclick="moveSlider('left')">❮</button>
-            
-            <div class="portfolio-slider" id="projectSlider">
-                
-                <div class="portfolio-card">
-                    <div class="portfolio-img">
-                        <img src="demo-cafe.jpg" alt="منوی کافه">
-                        <div class="overlay"><a href="./demo-cafe/index.html" target="_blank" class="view-btn">مشاهده آنلاین</a></div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>کافه رستوران ریلکس</h3>
-                        <p>طراحی مدرن با تم تیره مخصوص کافه‌ها</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-card">
-                    <div class="portfolio-img">
-                        <img src="demo-fastfood.jpg" alt="منوی فست فود">
-                        <div class="overlay"><a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a></div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>فست‌فود کینگ</h3>
-                        <p>منوی هیجانی با قابلیت انتخاب تاپینگ</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-card">
-                    <div class="portfolio-img">
-                        <img src="demo-traditional.jpg" alt="منوی رستوران سنتی">
-                        <div class="overlay"><a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a></div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>رستوران سنتی سلطان</h3>
-                        <p>دسته‌بندی اصیل ایرانی با رابط کاربری ساده</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-card">
-                    <div class="portfolio-img">
-                        <img src="demo-sofrekhane.jpg" alt="سفره‌خانه سنتی">
-                        <div class="overlay"><a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a></div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>سفره‌خانه سنتی ترنج</h3>
-                        <p>فضایی نوستالژیک با سرو غذاهای اصیل</p>
-                    </div>
-                </div>
-
-                <div class="portfolio-card">
-                    <div class="portfolio-img">
-                        <img src="demo-juice.jpg" alt="منوی آبمیوه">
-                        <div class="overlay"><a href="#" target="_blank" class="view-btn">مشاهده آنلاین</a></div>
-                    </div>
-                    <div class="portfolio-info">
-                        <h3>آبمیوه و بستنی لمیز</h3>
-                        <p>طراحی رنگارنگ با تمرکز بر تصاویر</p>
-                    </div>
-                </div>
-
-            </div>
-            
-            <button class="slider-btn next-btn" onclick="moveSlider('right')">❯</button>
+        <div class="input-group"><textarea id="userNote"></textarea></div>
+        <div id="form-table" class="input-group"><input type="number" id="tableNum"></div>
+        <div id="form-delivery" style="display:none">
+            <div class="input-group"><input type="tel" id="userPhone"></div>
+            <div class="input-group"><textarea id="address"></textarea></div>
         </div>
-    </section>
-    <section class="section contact" id="contact">
-        <h2 class="section-title"><span data-i18n="contact_title">شروع همکاری</span></h2>
-        <p data-i18n="contact_desc">برای مشاوره رایگان و سفارش منوی اختصاصی خودتان، همین حالا تماس بگیرید.</p>
-        <div class="contact-links">
-            <a href="https://wa.me/989105710039" class="contact-btn whatsapp">
-                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01C17.18 3.03 14.69 2 12.04 2zM12.05 19.81c-1.48 0-2.93-.4-4.21-1.15l-.3-.18-3.11.82.83-3.04-.19-.31c-.82-1.31-1.26-2.83-1.26-4.38 0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42 1.56 1.56 2.41 3.63 2.41 5.83 0 4.54-3.69 8.23-8.23 8.23z"/></svg>
-                <span data-i18n="btn_whatsapp">پیام در واتساپ</span>
-            </a>
-            <a href="tel:09105710039" class="contact-btn phone">
-                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                <span data-i18n="btn_call">تماس تلفنی</span>
-            </a>
-        </div>
-    </section>
+    </div>
 
-    <footer>
-        <p data-i18n="footer">طراحی و توسعه توسط گروه نرم‌افزاری مَجد | 2025</p>
-    </footer>
+    <div class="cart-bar" id="cartBar"><div class="final-btn" id="actionBtn" onclick="processOrder()">...</div></div>
 
     <script>
-        const translations = {
-        fa: {
-            logo_text: "گروه نرم‌افزاری مَجد",
-            nav_home: "خانه",
-            nav_products: "محصولات",
-            nav_portfolio: "نمونه‌کارها",
-            nav_contact: "تماس",
-            btn_order: "سفارش پروژه",
-            hero_title: "تحول دیجیتال کسب‌وکار شما<br>با <span style='color:var(--primary)'>ابزارهای هوشمند</span>",
-            hero_desc: "ما به رستوران‌ها و کافه‌ها کمک می‌کنیم تا بدون هزینه‌های سنگین اپلیکیشن، منوی خود را آنلاین و حرفه‌ای کنند.",
-            hero_btn: "مشاهده محصولات",
-            why_us: "چرا ما؟",
-            feat1_title: "سریع و سبک",
-            feat1_desc: "بدون نیاز به نصب هیچ اپلیکیشنی، مشتریان با یک اسکن ساده دسترسی دارند.",
-            feat2_title: "کنترل با اکسل",
-            feat2_desc: "شما مدیر سایت خود هستید! قیمت‌ها را از طریق گوگل شیت در لحظه تغییر دهید.",
-            feat3_title: "مقرون به صرفه",
-            feat3_desc: "هزینه طراحی بسیار کمتر از سایت‌های وردپرسی یا اپلیکیشن‌های اختصاصی.",
-            products_title: "محصولات برتر",
-            prod_title: "منوی دیجیتال هوشمند",
-            prod_desc: "پرفروش‌ترین محصول ما. یک منوی کامل با قابلیت سفارش‌گیری واتساپ و اتصال مستقیم به اکسل.",
-            prod_li1: "✅ متصل به گوگل شیت (بدون نیاز به ادمین)",
-            prod_li2: "✅ سرعت بسیاربالا وثبت تغییرات منو و... بصورت آنی ودرلحظه",
-            prod_li3: "✅ قابلیت روزشمار اشتراک و قفل خودکار",
-            prod_li4: "✅ دکمه سفارش سالن و بیرون‌بر",
-            prod_li5: "✅ اتصال به درگاه بانکی",
-            view_demo: "👀 مشاهده نمونه زنده",
-            contact_title: "شروع همکاری",
-            contact_desc: "برای مشاوره رایگان و سفارش منوی اختصاصی خودتان، همین حالا تماس بگیرید.",
-            btn_whatsapp: "پیام در واتساپ",
-            btn_call: "تماس تلفنی",
-            footer: "طراحی و توسعه توسط گروه نرم‌افزاری مَجد | 2025"
-        },
-        en: {
-            logo_text: "Majd Software Group",
-            nav_home: "Home",
-            nav_products: "Products",
-            nav_portfolio: "Portfolio",
-            nav_contact: "Contact",
-            btn_order: "Order Project",
-            hero_title: "Digital Transformation<br>with <span style='color:var(--primary)'>Smart Tools</span>",
-            hero_desc: "We help restaurants and cafes digitize their menu professionally without expensive apps.",
-            hero_btn: "View Products",
-            why_us: "Why Us?",
-            feat1_title: "Fast & Light",
-            feat1_desc: "No app installation required. Customers access via a simple QR scan.",
-            feat2_title: "Excel Control",
-            feat2_desc: "You are the boss! Update prices instantly via Google Sheets.",
-            feat3_title: "Cost Effective",
-            feat3_desc: "Much more affordable than WordPress sites or custom apps.",
-            products_title: "Our Products",
-            prod_title: "Smart Digital Menu",
-            prod_desc: "Our best-seller. A complete menu with WhatsApp ordering and direct Excel connection.",
-            prod_li1: "✅ Connected to Google Sheets",
-            prod_li2: "✅ Fast Speed & Instant Updates",
-            prod_li3: "✅ Subscription Timer & Auto-lock",
-            prod_li4: "✅ Dine-in & Delivery modes",
-            prod_li5: "✅ Payment Gateway integration",
-            view_demo: "👀 View Live Demo",
-            contact_title: "Let's Work Together",
-            contact_desc: "Contact us now for free consultation and ordering.",
-            btn_whatsapp: "Message on WhatsApp",
-            btn_call: "Call Us",
-            footer: "Designed & Developed by Majd Software Group | 2025"
-        },
-        ar: {
-            logo_text: "مجموعة مَجد للبرمجيات",
-            nav_home: "الرئيسية",
-            nav_products: "المنتجات",
-            nav_portfolio: "المشاريع",
-            nav_contact: "اتصل بنا",
-            btn_order: "طلب مشروع",
-            hero_title: "التحول الرقمي لأعمالك<br>مع <span style='color:var(--primary)'>أدوات ذكية</span>",
-            hero_desc: "نحن نساعد المطاعم والمقاهي على رقمنة قوائمهم بشكل احترافي دون تكاليف التطبيقات الباهظة.",
-            hero_btn: "عرض المنتجات",
-            why_us: "لماذا نحن؟",
-            feat1_title: "سريع وخفيف",
-            feat1_desc: "لا حاجة لتثبيت أي تطبيق. يمكن للعملاء الوصول عبر مسح رمز QR بسيط.",
-            feat2_title: "تحكم عبر إكسل",
-            feat2_desc: "أنت مدير موقعك! قم بتحديث الأسعار فوراً عبر جداول بيانات جوجل.",
-            feat3_title: "اقتصادي",
-            feat3_desc: "تكلفة التصميم أقل بكثير من مواقع ووردبريس أو التطبيقات الخاصة.",
-            products_title: "منتجاتنا",
-            prod_title: "القائمة الرقمية الذكية",
-            prod_desc: "منتجنا الأكثر مبيعاً. قائمة كاملة مع طلب عبر واتساب واتصال مباشر بـ إكسل.",
-            prod_li1: "✅ متصل بجداول بيانات جوجل",
-            prod_li2: "✅ سرعة عالية وتحديثات فورية",
-            prod_li3: "✅ مؤقت اشتراك وقفل تلقائي",
-            prod_li4: "✅ أوضاع الطلب الداخلي والتوصيل",
-            prod_li5: "✅ التكامل مع بوابات الدفع",
-            view_demo: "👀 مشاهدة العرض الحي",
-            contact_title: "لنعمل معاً",
-            contact_desc: "اتصل بنا الآن للحصول على استشارة مجانية والطلب.",
-            btn_whatsapp: "رسالة عبر واتساب",
-            btn_call: "اتصل بنا",
-            footer: "تصميم وتطوير مجموعة مَجد للبرمجيات | 2025"
-        }
-    };
-        function changeLanguage(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if(translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
+        // *** ID MOTEGHAYER *** // در فایل مادر، این ID را تغییر ندهید. وقتی برای مشتری کپی کردید، ID مشتری را بگذارید.
+        const sheetId = "1XoE-tWd9sor7HgqQe67z3JQCZyvt6G-IcSz9u1miRiw"; 
+        
+        const hardcodedPaymentLink = "https://idpay.ir"; 
+
+        let curLang = 'fa', currentCat = 'all', products = [], cart = {}, dictionary = {}, config = { isOpen:true, paymentLink:'', currency: 'ریال' };
+        
+        async function startApp() {
+            try {
+                const fetchCsv = async (sheet) => {
+                    const r = await fetch(`https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheet}&cb=${Date.now()}`);
+                    const text = await r.text();
+                    return text.split('\n').map(row => row.split(',').map(c => c.replace(/"/g,'').trim()));
+                };
+                const [mRows, sRows, tRows] = await Promise.all([fetchCsv('Menu'), fetchCsv('Settings'), fetchCsv('Translations')]);
+                                
+                sRows.forEach(r => {
+                    let k = (r[0] || "").toString().toLowerCase().trim();
+                    let v = (r[1] || "").toString().trim();
+
+                    if(k.includes('phone')) config.phone = v;
+                    if(k.includes('price')) config.deliveryPrice = parseInt(v) || 0;
+                    if(k.includes('open')) config.isOpen = v.toUpperCase() !== 'FALSE';
+                    if(k.includes('payment')) config.paymentLink = v;
+
+                    if(k.includes('themecolor') && v) document.documentElement.style.setProperty('--primary', v);
+                    if(k.includes('backgroundimage') && v) document.documentElement.style.setProperty('--bg-img', `url('${v}')`);
+                    if(k.includes('headerimage') && v) document.documentElement.style.setProperty('--header-img', `url('${v}')`);
+                    
+                    if(k.includes('currency') && v && v.length > 0) config.currency = v;
+
+                    // *** SYSTEM THEME (ADD SHODE) ***
+                    // اینجا چک میکنیم که مشتری چه تمی انتخاب کرده است
+                    if (k.includes('masterstyle')) {
+                        const styleName = v.toLowerCase().trim();
+                        // پاک کردن استایل‌های قبلی
+                        document.body.classList.remove('style-cafe', 'style-restaurant', 'style-fastfood');
+                        
+                        if (styleName === 'cafe') document.body.classList.add('style-cafe');
+                        if (styleName === 'restaurant') document.body.classList.add('style-restaurant');
+                        if (styleName === 'fastfood') document.body.classList.add('style-fastfood');
+                    }
+                });
+                                
+                if(hardcodedPaymentLink) {
+                    config.paymentLink = hardcodedPaymentLink;
                 }
+
+                mRows.slice(1).forEach((r, i) => {
+                    if(r.length < 7) return;
+                    products.push({ id: i, cat: { fa: r[0], en: r[1], ar: r[2] }, title: { fa: r[3], en: r[4], ar: r[5] }, p: parseInt(r[6].replace(/,/g,'')), img: r[7], active: r[8]?.toUpperCase() !== 'FALSE' });
+                });
+
+                tRows.slice(1).forEach(r => { if(r[0]) dictionary[r[0].trim()] = { fa:r[1], en:r[2], ar:r[3] }; });
+                setLang('fa');
+            } catch (e) { console.error(e); }
+        }
+
+        const getT = (k) => (dictionary[k] && dictionary[k][curLang]) ? dictionary[k][curLang] : k;
+
+        function setLang(l) {
+            curLang = l;
+            document.getElementById('mainHtml').dir = (l === 'en') ? 'ltr' : 'rtl';
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.id === 'btn-'+l));
+            document.getElementById('shopName').innerText = getT('shopName');
+            document.getElementById('revTitle').innerText = getT('review');
+            document.getElementById('btn-table').innerText = getT('table');
+            document.getElementById('btn-delivery').innerText = getT('delivery');
+            document.getElementById('l-sub').innerText = getT('subtotal');
+            document.getElementById('l-total').innerText = getT('payable');
+            document.getElementById('devTitle').innerText = getT('dev');
+            document.getElementById('userNote').placeholder = getT('note');
+            document.getElementById('tableNum').placeholder = getT('tNum');
+            document.getElementById('userPhone').placeholder = getT('phone');
+            document.getElementById('address').placeholder = getT('addr');
+            const s = document.getElementById('shopStatus');
+            s.innerText = config.isOpen ? getT('open') : getT('closed');
+            s.className = "status-badge " + (config.isOpen ? "open" : "closed");
+            renderMenu(currentCat);
+        }
+
+        function renderMenu(cat) {
+            currentCat = cat;
+            const list = document.getElementById('list'), catsDiv = document.getElementById('cats');
+            
+            const zarib = (config.currency === 'ریال') ? 10 : 1;
+
+            const catSet = ['all', ...new Set(products.map(p => p.cat[curLang]))];
+            catsDiv.innerHTML = catSet.map(c => `<div class="cat-btn ${ (cat === c || (cat === 'all' && c === 'all')) ? 'active' : ''}" onclick="renderMenu('${c}')">${(c === 'all') ? getT('all') : c}</div>`).join('');
+            
+            list.innerHTML = ''; 
+
+            products.filter(p => cat === 'all' || p.cat[curLang] === cat).forEach(p => {
+                const count = cart[p.id] || 0;
+                const btn = !p.active ? `<span style="color:#e74c3c;">${getT('out')}</span>` : (count === 0 ? `<div class="add-btn" onclick="upd(${p.id},1)">${getT('add')}</div>` : `<div class="qty-box show"><div class="q-btn" onclick="upd(${p.id},1)">+</div><span class="q-num">${count}</span><div class="q-btn" onclick="upd(${p.id},-1)">-</div></div>`);
+                
+                // ساختار HTML آیتم‌ها به صورت عمومی
+                list.innerHTML += `<div class="item">
+                    <img src="${p.img}">
+                    <div style="flex:1">
+                        <h3>${p.title[curLang]}</h3>
+                        <div style="display:flex;justify-content:space-between;margin-top:5px;align-items:center; flex-wrap:wrap; gap:5px;">
+                            <span class="price">${(p.p * zarib).toLocaleString()} <small style="font-size:0.7em">${config.currency}</small></span>
+                            ${btn}
+                        </div>
+                    </div>
+                </div>`;
             });
-
-            const htmlTag = document.documentElement;
-            if (lang === 'en') {
-                htmlTag.setAttribute('dir', 'ltr');
-                htmlTag.lang = 'en';
-            } else {
-                htmlTag.setAttribute('dir', 'rtl');
-                htmlTag.lang = 'lang';
-            }
+            calcTotal();
         }
 
-        function toggleTheme() {
-            const body = document.body;
-            const btn = document.getElementById('themeToggle');
-            body.classList.toggle('light-mode');
+        window.upd = (id, n) => { if(!config.isOpen) return; cart[id] = (cart[id] || 0) + n; if(cart[id]<=0) delete cart[id]; renderMenu(currentCat); };
+
+        function calcTotal() {
+            let total = 0, count = 0, sumHtml = '';
+            const zarib = (config.currency === 'ریال') ? 10 : 1;
+
+            for(let id in cart) { 
+                const p = products[id]; 
+                total += p.p * cart[id]; 
+                count += cart[id];
+                sumHtml += `<div class="summary-item"><span>${p.title[curLang]}</span><div class="qty-box" style="width:auto"><div class="q-btn" onclick="upd(${id},-1)">-</div><span class="q-num">${cart[id]}</span><div class="q-btn" onclick="upd(${id},1)">+</div></div><span>${((p.p * cart[id]) * zarib).toLocaleString()} <small>${config.currency}</small></span></div>`;
+            }
             
-            if(body.classList.contains('light-mode')) {
-                btn.innerHTML = "☀️";
-                localStorage.setItem('theme', 'light');
-            } else {
-                btn.innerHTML = "🌙";
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            if(savedTheme === 'light') {
-                document.body.classList.add('light-mode');
-                document.getElementById('themeToggle').innerHTML = "☀️";
-            }
-        })();
-        /* تابع ورق زدن اسلایدر */
-        function moveSlider(direction) {
-            const slider = document.getElementById('projectSlider');
-            const cardWidth = 300; // اندازه کارت + فاصله
+            const isDel = document.getElementById('btn-delivery').classList.contains('selected');
+            const final = isDel ? total + config.deliveryPrice : total;
             
-            if(direction === 'right') {
-                slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
-            } else {
-                slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-            }
+            document.getElementById('itemsTotal').innerText = (total * zarib).toLocaleString();
+            document.getElementById('finalPayable').innerText = (final * zarib).toLocaleString() + " " + config.currency;
+            document.getElementById('summaryList').innerHTML = sumHtml || "...";
+            
+            const bar = document.getElementById('cartBar'), det = document.getElementById('orderDetails');
+            bar.style.display = count > 0 ? 'block' : 'none';
+            document.getElementById('actionBtn').innerText = det.classList.contains('active') ? (isDel ? getT('payBtn') : getT('submitBtn')) : getT('viewBtn');
         }
+        
+        window.setMode = (t) => {
+            document.getElementById('btn-table').classList.toggle('selected', t==='table');
+            document.getElementById('btn-delivery').classList.toggle('selected', t==='delivery');
+            document.getElementById('form-table').style.display = t==='table' ? 'block' : 'none';
+            document.getElementById('form-delivery').style.display = t==='delivery' ? 'block' : 'none';
+            calcTotal();
+        };
+
+        window.closeOrderWindow = () => { document.getElementById('orderDetails').classList.remove('active'); };
+
+        window.processOrder = () => {
+            if(!config.isOpen) return alert('فروشگاه بسته است.');
+            
+            const det = document.getElementById('orderDetails');
+            if (!det.classList.contains('active')) { det.classList.add('active'); calcTotal(); return; }
+            
+            let desc = "";
+            for(let id in cart) { 
+                const p = products[id]; 
+                if(p) { desc += `${p.title[curLang]}(${cart[id]}) - `; } 
+            }
+            const note = document.getElementById('userNote').value;
+            if(note) desc += `\nپیام: ${note}`;
+            
+            const isDel = document.getElementById('btn-delivery').classList.contains('selected');
+
+            if(!isDel) {
+                const tNum = document.getElementById('tableNum').value;
+                if(!tNum) return alert('شماره میز را وارد کنید');
+                window.open(`https://wa.me/${config.phone}?text=${encodeURIComponent(`سفارش سالن\nمیز: ${tNum}\n${desc}`)}`);
+            } 
+            else {
+                const ph = document.getElementById('userPhone').value;
+                const ad = document.getElementById('address').value;
+                if(!ph || !ad) return alert('برای ارسال پیک، شماره تماس و آدرس الزامی است.');
+
+                let total = 0;
+                for(let id in cart) total += products[id].p * cart[id];
+                const finalAmount = total + config.deliveryPrice;
+
+                if(!config.paymentLink) {
+                    alert('خطا: لینک درگاه پرداخت در تنظیمات وارد نشده است.');
+                    return;
+                }
+
+                const zarib = (config.currency === 'ریال') ? 10 : 1;
+                const finalPayable = finalAmount * zarib;
+
+                const confirmMsg = `مبلغ قابل پرداخت: ${finalPayable.toLocaleString()} ${config.currency}\n\n⚠️ توجه مهم:\nلطفا پس از اتمام پرداخت، حتما از صفحه رسید بانکی "اسکرین‌شات" بگیرید و آن را در واتس‌اپ برای ما ارسال کنید.\n\nآیا برای پرداخت آماده‌اید؟`;
+
+                if(confirm(confirmMsg)) {
+                    let payUrl = config.paymentLink;
+                    if(payUrl.includes('idpay.ir')) {
+                        const separator = payUrl.includes('?') ? '&' : '?';
+                        payUrl += `${separator}amount=${finalPayable}`; 
+                    }
+                    else {
+                         const separator = payUrl.includes('?') ? '&' : '?';
+                         payUrl += `${separator}amount=${finalPayable}`;
+                    }
+                    window.location.href = payUrl;
+                }
+            }
+        };
+
+        startApp();
     </script>
 </body>
 </html>
