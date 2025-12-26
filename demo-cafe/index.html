@@ -102,6 +102,7 @@
             --input-bg: #e9ecef;
         }
         body.style-restaurant .menu-list { display: flex; flex-direction: column; }
+        
         body.style-restaurant .item {
             display: flex; 
             flex-direction: row;
@@ -113,14 +114,33 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             border: none;
             border-right: 4px solid var(--primary);
+            min-height: 110px; /* ارتفاع ثابت دادیم تا همه یک‌اندازه باشند */
         }
+        
         body.style-restaurant .item img {
             width: 80px; height: 80px; border-radius: 50%; 
             margin-left: 15px; margin-bottom: 0;
             border: 2px solid var(--primary);
+            flex-shrink: 0; /* جلوگیری از جمع شدن عکس */
         }
-        body.style-restaurant .item h3 { height: auto; margin-bottom: 5px; color: #333; }
-        body.style-restaurant .item > div { flex: 1; } /* Wrapper text */
+
+        body.style-restaurant .item h3 { 
+            height: auto; 
+            margin-bottom: 5px; 
+            color: #333; 
+            margin-top: 0; 
+        }
+
+        /* --- تغییر مهم: وسط‌چین کردن متن و دکمه --- */
+        body.style-restaurant .item > div { 
+            flex: 1; 
+            display: flex;             /* فعال کردن فلکس برای باکس متن */
+            flex-direction: column;    /* چیدمان عمودی */
+            justify-content: center;   /* وسط‌چین کردن عمودی */
+            height: 100%;              /* ارتفاع کامل */
+        } 
+        /* ------------------------------------------ */
+
         body.style-restaurant .add-btn { width: auto; display: inline-block; background: var(--primary); }
         body.style-restaurant .qty-box { width: auto; display: inline-flex; }
 
