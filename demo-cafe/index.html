@@ -193,113 +193,126 @@
         body.style-restaurant .summary-item {
             color: #000000 !important; 
         }
-        /* --- استایل ۳: فانتزی (مخصوص بستنی و آبمیوه) --- */
+        /* --- استایل ۳: فانتزی (مخصوص بستنی و آبمیوه - چند رنگ) --- */
         body.style-fastfood {
-            /* پالت رنگی پاستلی و شاد */
-            --bg: linear-gradient(135deg, #ffdee9 0%, #b5fffc 100%);      
+            /* پس‌زمینه کلی صفحه (سفید ساده تا کارت‌ها دیده شوند) */
+            --bg: #fdfdfd;      
             --card: #ffffff;
-            --text: #444;           /* خاکستری تیره برای خوانایی بهتر روی سفید */
-            --primary: #ff6b81;     /* رنگ اصلی: صورتی توت‌فرنگی */
-            --secondary: #2f3542;   /* رنگ دوم */
+            --text: #444;           
+            --primary: #ff6b81;     
+            --secondary: #2f3542;   
             --input-bg: #fff;
-            --bg-img: none;         /* حذف عکس پس‌زمینه قدیمی */
+            --bg-img: none;         
         }
 
-        /* تنظیم پس‌زمینه گرادینت برای کل صفحه */
+        /* پس‌زمینه کلی */
         body.style-fastfood {
             background: var(--bg);
-            background-attachment: fixed; /* گرادینت ثابت بماند */
         }
 
         body.style-fastfood .menu-list { 
             display: flex; 
             flex-direction: column; 
-            gap: 35px; /* فاصله بیشتر بین کارت‌ها بخاطر بیرون‌زدگی عکس */
-            padding-top: 40px; /* فضای خالی بالا برای عکس اولین کارت */
+            gap: 35px; 
+            padding-top: 40px; 
         }
         
         body.style-fastfood .item {
             display: flex; 
             flex-direction: column;
-            align-items: center;    /* وسط‌چین کردن همه چیز */
+            align-items: center;    
             text-align: center;
             
-            background: rgba(255, 255, 255, 0.9); /* زمینه سفید شیشه‌ای */
-            backdrop-filter: blur(5px);
+            border-radius: 30px;    /* گوشه‌های حبابی */
+            padding: 0 20px 20px 20px; 
             
-            border-radius: 25px;    /* گوشه‌های کاملا گرد و حبابی */
-            padding: 0 20px 20px 20px; /* پدینگ بالا 0 باشد تا عکس جا بشود */
-            
-            /* سایه رنگی و نرم */
-            box-shadow: 0 10px 25px rgba(255, 107, 129, 0.15);
-            border: 2px solid #fff; /* خط سفید دور کارت */
+            /* سایه ملایم */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border: 3px solid #fff; /* حاشیه سفید ضخیم مثل استیکر */
             
             position: relative;
-            margin-top: 30px; /* فاصله از کارت بالایی */
-            overflow: visible; /* اجازه دهیم عکس از کادر بزند بیرون */
+            margin-top: 30px; 
+            overflow: visible; 
         }
+
+        /* =========================================
+           جادوی رنگ‌های اتوماتیک (پاستلی و شاد)
+           ========================================= */
+        
+        /* کارت اول، ششم، یازدهم... (صورتی ملایم) */
+        body.style-fastfood .item:nth-child(5n+1) { background: #ffe0e9; }
+
+        /* کارت دوم، هفتم... (آبی یخی) */
+        body.style-fastfood .item:nth-child(5n+2) { background: #e0fbfc; }
+
+        /* کارت سوم، هشتم... (لیمویی روشن) */
+        body.style-fastfood .item:nth-child(5n+3) { background: #fff9c4; }
+
+        /* کارت چهارم، نهم... (نعنایی تازه) */
+        body.style-fastfood .item:nth-child(5n+4) { background: #dff9fb; }
+
+        /* کارت پنجم، دهم... (یاسی رویایی) */
+        body.style-fastfood .item:nth-child(5n+5) { background: #f3e5f5; }
+
+        /* ========================================= */
 
         /* استایل عکس دایره‌ای و بیرون‌زده */
         body.style-fastfood .item img { 
-            width: 110px; 
-            height: 110px; 
+            width: 120px; 
+            height: 120px; 
             object-fit: cover; 
-            border-radius: 50%; /* دایره کامل */
+            border-radius: 50%; 
             
-            margin-top: -40px; /* تکنیک اصلی: بالا کشیدن عکس */
+            margin-top: -45px; /* بالا کشیدن عکس */
             margin-bottom: 10px;
             
-            border: 4px solid #fff; /* قاب سفید دور عکس */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* سایه زیر عکس */
+            border: 5px solid #fff; /* قاب سفید دور عکس */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            background: #fff;
         }
 
         /* تیتر بستنی */
         body.style-fastfood .item h3 { 
             height: auto; 
             color: #2f3542; 
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 800;
             margin-bottom: 5px;
         }
 
-        /* باکس دربرگیرنده متن (برای جلوگیری از تداخل) */
-        body.style-fastfood .item > div { 
-            padding: 0; 
-            width: 100%;
-        }
+        body.style-fastfood .item > div { padding: 0; width: 100%; }
 
-        /* استایل قیمت (با فونت رنگی) */
+        /* استایل قیمت */
         body.style-fastfood .price {
-            color: var(--primary);
+            color: var(--secondary); /* قیمت کمی تیره‌تر برای خوانایی روی رنگ‌های روشن */
             font-size: 1.2rem;
             display: block;
             margin-bottom: 15px;
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.05);
+            font-weight: 900;
         }
 
-        /* دکمه افزودن (گرادینت کپسولی) */
+        /* دکمه افزودن (رنگ ثابت گرادینت - تغییر نمی‌کند) */
         body.style-fastfood .add-btn { 
             width: 100%; 
-            float: none; /* حذف float قدیمی */
-            background: linear-gradient(45deg, #ff6b81, #ff9f43); /* گرادینت شاد */
+            float: none; 
+            background: linear-gradient(45deg, #ff6b81, #ff9f43); /* همان رنگ قبلی */
             color: #fff; 
-            border-radius: 50px; /* کپسولی */
-            padding: 10px 0;
+            border-radius: 50px; 
+            padding: 12px 0;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(255, 107, 129, 0.3);
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 129, 0.4);
             transition: transform 0.2s;
         }
         
-        body.style-fastfood .add-btn:active {
-            transform: scale(0.95); /* افکت فشرده شدن */
-        }
+        body.style-fastfood .add-btn:active { transform: scale(0.95); }
 
         /* استایل دکمه‌های شمارشگر (+ -) */
         body.style-fastfood .qty-box { 
             width: 100%; 
             float: none;
             background: #fff;
-            border: 2px solid var(--primary);
+            border: 2px solid #ff6b81;
             border-radius: 50px;
             justify-content: space-between;
             padding: 5px;
@@ -307,14 +320,14 @@
         }
 
         body.style-fastfood .q-num { 
-            color: #333 !important; /* رنگ عدد مشکی */
-            font-size: 1.2rem;
+            color: #333 !important; 
+            font-size: 1.3rem;
         }
         
         body.style-fastfood .q-btn { 
             color: #fff;
-            background: var(--primary);
-            width: 35px; height: 35px;
+            background: #ff6b81;
+            width: 38px; height: 38px;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
         }
