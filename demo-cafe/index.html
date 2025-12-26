@@ -218,27 +218,41 @@
             padding-top: 40px; /* فضای خالی بالا برای عکس اولین کارت */
         }
         
-        body.style-fastfood .item {
-            display: flex; 
-            flex-direction: column;
-            align-items: center;    /* وسط‌چین کردن همه چیز */
-            text-align: center;
-            
-            background: rgba(255, 255, 255, 0.9); /* زمینه سفید شیشه‌ای */
-            backdrop-filter: blur(5px);
-            
-            border-radius: 25px;    /* گوشه‌های کاملا گرد و حبابی */
-            padding: 0 20px 20px 20px; /* پدینگ بالا 0 باشد تا عکس جا بشود */
-            
-            /* سایه رنگی و نرم */
-            box-shadow: 0 10px 25px rgba(255, 107, 129, 0.15);
-            border: 2px solid #fff; /* خط سفید دور کارت */
-            
-            position: relative;
-            margin-top: 30px; /* فاصله از کارت بالایی */
-            overflow: visible; /* اجازه دهیم عکس از کادر بزند بیرون */
-        }
+        /* --- کد جدید را اینجا پیست کن --- */
+body.style-fastfood .item {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;    /* وسط‌چین کردن */
+    text-align: center;
+    
+    /* زمینه سفید */
+    background: rgba(255, 255, 255, 0.95); 
+    backdrop-filter: blur(10px);
+    
+    border-radius: 25px;
+    padding: 0 20px 20px 20px; /* پدینگ بالا 0 */
+    
+    /* --- استایل سه بعدی و برجسته --- */
+    border: 3px solid #fff;          /* دور سفید */
+    border-bottom: 12px solid #e6e6e6; /* ضخامت پایین (افکت سه بعدی) */
+    transform: translateY(-8px);     /* بالا کشیدن کارت */
+    
+    /* سایه پهن */
+    box-shadow: 0 20px 40px rgba(255, 107, 129, 0.25);
+    
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    overflow: visible; /* مهم برای بیرون زدگی عکس */
+    transition: all 0.2s ease;
+}
 
+/* افکت کلیک (فشرده شدن کارت) */
+body.style-fastfood .item:active {
+    transform: translateY(-2px);
+    border-bottom: 5px solid #e6e6e6;
+    box-shadow: 0 5px 15px rgba(255, 107, 129, 0.2);
+}
         /* استایل عکس دایره‌ای و بیرون‌زده */
         body.style-fastfood .item img { 
             width: 110px; 
