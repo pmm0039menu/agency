@@ -45,7 +45,7 @@
            مدیریت استایل‌ها (Layout System)
            ========================================= */
 
-        /* --- استایل ۱: پایه (پیش‌فرض / کافه) --- */
+        /* --- استایل پایه (پیش‌فرض / کافه) --- */
         .menu-list { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -70,10 +70,22 @@
         }
 
         .item img { 
-            width: 100%; height: 120px; border-radius: 10px; object-fit: cover; margin-bottom: 10px; border: none;
+            width: 100%; 
+            height: 120px; 
+            border-radius: 10px; 
+            object-fit: cover; 
+            margin-bottom: 10px;
+            border: none;
         }
 
-        .item h3 { font-size: 0.9rem; margin-bottom: 5px; height: 40px; overflow: hidden; color: var(--text); }
+        .item h3 {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            height: 40px; 
+            overflow: hidden;
+            color: var(--text);
+        }
+        
         .price { color: var(--primary); font-weight: bold; font-size: 1.1rem; display: block; margin-bottom: 5px;}
         .add-btn { background: #333; color: #fff; padding: 6px 15px; border-radius: 8px; font-size: 0.9rem; cursor: pointer; width: 100%; margin-top: auto;}
         .qty-box { display: flex; align-items: center; justify-content: space-between; background: #000; border-radius: 6px; border: 1px solid var(--primary); width: 100%; margin-top: auto;}
@@ -81,39 +93,39 @@
         .q-num { width: 25px; text-align: center; font-weight: bold; font-size: 1rem; color: #fff; }
 
 
-        /* --- استایل ۲: بستنی و آبمیوه (شاد و رنگی) - جایگزین رستوران --- */
-        body.style-juice {
-            --bg: #ffeaa7;       /* زرد روشن */
+        /* --- استایل ۲: رستوران (روشن + لیستی) --- */
+        body.style-restaurant {
+            --bg: #f8f9fa;       
             --card: #ffffff;
             --text: #2d3436;     
-            --primary: #e84393;  /* صورتی پررنگ */
-            --input-bg: #fff;
-            --bg-img: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%); /* گرادینت صورتی و هلویی */
+            --primary: #c0392b;  
+            --input-bg: #e9ecef;
+            --bg-img: none;
         }
-        body.style-juice .menu-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        body.style-juice .item {
-            background: rgba(255,255,255,0.9);
-            border-radius: 25px;
+        body.style-restaurant .menu-list { display: flex; flex-direction: column; }
+        body.style-restaurant .item {
+            display: flex; 
+            flex-direction: row;
+            align-items: center; 
+            text-align: right;
+            background: #fff;
+            border-radius: 50px 15px 15px 50px; 
             padding: 10px;
-            border: 2px dashed var(--primary); /* حاشیه خط‌چین بامزه */
-            box-shadow: 0 10px 20px rgba(232, 67, 147, 0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: none;
+            border-right: 4px solid var(--primary);
         }
-        body.style-juice .item img {
-            width: 100%; height: 120px; border-radius: 15px; 
-            border: 3px solid #fff;
-            transform: rotate(-2deg); /* عکس کج برای بامزگی */
-            margin-bottom: 8px;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        body.style-restaurant .item img {
+            width: 80px; height: 80px; border-radius: 50%; 
+            margin-left: 15px; margin-bottom: 0;
+            border: 2px solid var(--primary);
         }
-        body.style-juice .item h3 { color: #d63031; font-weight: bold; height: auto; }
-        body.style-juice .add-btn { background: var(--primary); border-radius: 50px; box-shadow: 0 5px 10px rgba(232, 67, 147, 0.4); }
-        body.style-juice .qty-box { background: #fff; border: 2px solid var(--primary); border-radius: 50px; }
-        body.style-juice .q-num { color: #000; }
-        body.style-juice .cat-btn { border-radius: 50px; border: 2px solid #fff; background: rgba(255,255,255,0.5); font-weight: bold;}
-        body.style-juice .cat-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); transform: scale(1.1); }
+        body.style-restaurant .item h3 { height: auto; margin-bottom: 5px; color: #333; }
+        body.style-restaurant .item > div { flex: 1; } /* Wrapper text */
+        body.style-restaurant .add-btn { width: auto; display: inline-block; background: var(--primary); }
+        body.style-restaurant .qty-box { width: auto; display: inline-flex; }
 
-
-        /* --- استایل ۳: فست‌فود (مدرن + کارت بزرگ) --- */
+        /* --- استایل ۳: فست‌فود (رنگی + کارتی) --- */
         body.style-fastfood {
             --bg: #fff5f5;      
             --card: #ffffff;
@@ -219,7 +231,7 @@
     <div class="cart-bar" id="cartBar"><div class="final-btn" id="actionBtn" onclick="processOrder()">...</div></div>
 
     <script>
-        // *** ID MOTEGHAYER *** // اینجا ID کافه خودتان را بگذارید
+        // *** ID MOTEGHAYER *** // در فایل مادر، این ID را تغییر ندهید. وقتی برای مشتری کپی کردید، ID مشتری را بگذارید.
         const sheetId = "1XS4gTioBd7JhEv1aWqrBbO8HXiWY4Am0-NckHV-Efd8"; 
         
         const hardcodedPaymentLink = "https://idpay.ir"; 
@@ -250,13 +262,15 @@
                     
                     if(k.includes('currency') && v && v.length > 0) config.currency = v;
 
-                    // *** SYSTEM THEME (تم آبمیوه اضافه شد) ***
+                    // *** SYSTEM THEME (ADD SHODE) ***
+                    // اینجا چک میکنیم که مشتری چه تمی انتخاب کرده است
                     if (k.includes('masterstyle')) {
                         const styleName = v.toLowerCase().trim();
-                        document.body.classList.remove('style-cafe', 'style-juice', 'style-fastfood');
+                        // پاک کردن استایل‌های قبلی
+                        document.body.classList.remove('style-cafe', 'style-restaurant', 'style-fastfood');
                         
                         if (styleName === 'cafe') document.body.classList.add('style-cafe');
-                        if (styleName === 'juice') document.body.classList.add('style-juice'); // تم جدید
+                        if (styleName === 'restaurant') document.body.classList.add('style-restaurant');
                         if (styleName === 'fastfood') document.body.classList.add('style-fastfood');
                     }
                 });
@@ -313,6 +327,7 @@
                 const count = cart[p.id] || 0;
                 const btn = !p.active ? `<span style="color:#e74c3c;">${getT('out')}</span>` : (count === 0 ? `<div class="add-btn" onclick="upd(${p.id},1)">${getT('add')}</div>` : `<div class="qty-box show"><div class="q-btn" onclick="upd(${p.id},1)">+</div><span class="q-num">${count}</span><div class="q-btn" onclick="upd(${p.id},-1)">-</div></div>`);
                 
+                // ساختار HTML آیتم‌ها به صورت عمومی
                 list.innerHTML += `<div class="item">
                     <img src="${p.img}">
                     <div style="flex:1">
